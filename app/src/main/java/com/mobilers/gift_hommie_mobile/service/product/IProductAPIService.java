@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 
 public interface IProductAPIService {
     @GET("{endpoint}")
-    Call<List<Product>> getAll(@Path(value = "endpoint", encoded = true) String endpoint);
+    Call<Product[]> getAll(@Path(value = "endpoint", encoded = true) String endpoint);
 
     @GET("{endpoint}/{id}")
     Call<Product> get(@Path(value = "endpoint", encoded = true) String endpoint, @Path("id") Object id);

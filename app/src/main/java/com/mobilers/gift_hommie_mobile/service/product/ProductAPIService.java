@@ -19,8 +19,8 @@ public class ProductAPIService {
         this.endpoint = endpoint;
     }
 
-    public void getAll(Callback<List<Product>> callback) {
-        Call<List<Product>> call = apiService.getAll(endpoint);
+    public void getAll(Callback<Product[]> callback) {
+        Call<Product[]> call = apiService.getAll(endpoint);
         call.enqueue(callback);
     }
 

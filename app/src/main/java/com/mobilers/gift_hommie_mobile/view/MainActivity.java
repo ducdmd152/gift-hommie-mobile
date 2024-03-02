@@ -27,17 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
         ProductAPIService productAPIService = new ProductAPIService();
 
-        productAPIService.getAll(new Callback<List<Product>>() {
+        productAPIService.getAll(new Callback<Product[]>() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            public void onResponse(Call<Product[]> call, Response<Product[]> response) {
                 if (response.isSuccessful()) {
-                    List<Product> products = response.body();
+                    Product[] products = response.body();
                     if (products != null) {
                         for (Product product : products) {
                             Log.d(" Product: " + product.getId() , product.getName());
                         }
                     }
-                    Toast.makeText(MainActivity.this, "Loaded " + products.size() + " items successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Loaded " + products.length + " items successfully!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Something wrong!", Toast.LENGTH_SHORT).show();
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<Product[]> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
             }
         });
