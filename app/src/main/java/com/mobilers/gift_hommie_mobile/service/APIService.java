@@ -1,21 +1,16 @@
 package com.mobilers.gift_hommie_mobile.service;
+
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIService<T> {
     private final IAPIService<T> apiService;
     private final String endpoint;
 
-    public APIService(String endpoint, Class<T> serviceType) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIClient.getClient().baseUrl())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        this.apiService = retrofit.create(IAPIService.class);
+    public APIService(IAPIService<T> apiService, String endpoint) {
+        this.apiService = apiService;
         this.endpoint = endpoint;
     }
 

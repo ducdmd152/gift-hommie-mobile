@@ -1,7 +1,5 @@
 package com.mobilers.gift_hommie_mobile.service;
 
-import com.mobilers.gift_hommie_mobile.model.product.ProductGET;
-
 import java.util.List;
 
 import retrofit2.Call;

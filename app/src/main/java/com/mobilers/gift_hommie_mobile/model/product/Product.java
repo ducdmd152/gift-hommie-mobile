@@ -1,6 +1,6 @@
 package com.mobilers.gift_hommie_mobile.model.product;
 
-public class ProductGET {
+public class Product {
     private int id;
     private String name;
     private String description;
@@ -15,7 +15,7 @@ public class ProductGET {
     private String categoryName;
 
     // Constructor
-    public ProductGET(int id, String name, String description, int quantity, double price, boolean status,
+    public Product(int id, String name, String description, int quantity, double price, boolean status,
                    String avatar, int available, int sold, double rating, int categoryId, String categoryName) {
         this.id = id;
         this.name = name;
