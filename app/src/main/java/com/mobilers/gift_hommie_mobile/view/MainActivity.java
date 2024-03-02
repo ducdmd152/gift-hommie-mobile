@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
+import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.APIClient;
 import com.mobilers.gift_hommie_mobile.service.APIService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
@@ -27,17 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
         ProductAPIService productAPIService = new ProductAPIService();
 
-        productAPIService.getAll(new Callback<Product[]>() {
+        productAPIService.getAll(new Callback<ProductListResponseDTO>() {
             @Override
-            public void onResponse(Call<Product[]> call, Response<Product[]> response) {
+            public void onResponse(Call<ProductListResponseDTO> call, Response<ProductListResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    Product[] products = response.body();
-                    if (products != null) {
-                        for (Product product : products) {
+                    ProductListResponseDTO body = response.body();
+                    if (body != null && body.getContent() != null) {
+                        for (Product product : body.getContent()) {
                             Log.d(" Product: " + product.getId() , product.getName());
                         }
                     }
-                    Toast.makeText(MainActivity.this, "Loaded " + products.length + " items successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Loaded items successfully!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Something wrong!", Toast.LENGTH_SHORT).show();
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Product[]> call, Throwable t) {
+            public void onFailure(Call<ProductListResponseDTO> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
             }
         });

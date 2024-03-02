@@ -1,5 +1,6 @@
 package com.mobilers.gift_hommie_mobile.service.product;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
+import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.APIClient;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class ProductAPIService {
         this.endpoint = endpoint;
     }
 
-    public void getAll(Callback<Product[]> callback) {
-        Call<Product[]> call = apiService.getAll(endpoint);
+    public void getAll(Callback<ProductListResponseDTO> callback) {
+        Call<ProductListResponseDTO> call = apiService.getAll(endpoint);
         call.enqueue(callback);
     }
 
@@ -29,18 +30,18 @@ public class ProductAPIService {
         call.enqueue(callback);
     }
 
-    public void create(Product model, Callback<Product> callback) {
-        Call<Product> call = apiService.create(endpoint, model);
-        call.enqueue(callback);
-    }
-
-    public void update(int id, Product model, Callback<Product> callback) {
-        Call<Product> call = apiService.update(endpoint, id, model);
-        call.enqueue(callback);
-    }
-
-    public void delete(int id, Callback<Product> callback) {
-        Call<Product> call = apiService.delete(endpoint, id);
-        call.enqueue(callback);
-    }
+//    public void create(Product model, Callback<Product> callback) {
+//        Call<Product> call = apiService.create(endpoint, model);
+//        call.enqueue(callback);
+//    }
+//
+//    public void update(int id, Product model, Callback<Product> callback) {
+//        Call<Product> call = apiService.update(endpoint, id, model);
+//        call.enqueue(callback);
+//    }
+//
+//    public void delete(int id, Callback<Product> callback) {
+//        Call<Product> call = apiService.delete(endpoint, id);
+//        call.enqueue(callback);
+//    }
 }

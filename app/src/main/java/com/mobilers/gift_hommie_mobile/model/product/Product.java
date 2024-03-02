@@ -15,20 +15,16 @@ public class Product {
     private String categoryName;
 
     // Constructor
-    public Product(int id, String name, String description, int quantity, double price, boolean status,
-                   String avatar, int available, int sold, double rating, int categoryId, String categoryName) {
+    public Product(int id, String name, String description, int quantity, double price,
+                   String avatar, int categoryId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.status = status;
         this.avatar = avatar;
-        this.available = available;
-        this.sold = sold;
-        this.rating = rating;
         this.categoryId = categoryId;
-        this.categoryName = categoryName;
+        this.status = true;
     }
 
     // Getters and Setters
