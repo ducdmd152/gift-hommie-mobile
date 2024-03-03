@@ -74,7 +74,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginRight="1.07dp"
                     android:layout_weight="1"
-                    android:background="@drawable/container_input_label"
+                    android:background="@drawable/checkout_container_input_label"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -94,9 +94,9 @@
                     <EditText
                         android:id="@+id/etName"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1"
+                        android:padding="4dp"
                         android:background="@drawable/rounded_border">
 
                     </EditText>
@@ -109,7 +109,7 @@
                     android:layout_gravity="left"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/container_input_label3"
+                    android:background="@drawable/checkout_container_input_label"
                     android:gravity="left|top"
                     android:orientation="vertical">
 
@@ -129,9 +129,9 @@
                     <EditText
                         android:id="@+id/etPhone"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1"
+                        android:padding="4dp"
                         android:background="@drawable/rounded_border" />
                 </LinearLayout>
 
@@ -157,46 +157,13 @@
                         android:textColor="#FF020202"
                         android:textSize="16dp" />
 
-                    <FrameLayout
-                        android:id="@+id/container_input2"
+                    <Spinner
+                        android:id="@+id/spProvince"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/image_rectangle4"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/image_rectangle4"
-                            android:scaleType="centerCrop" />
-
-                        <TextView
-                            android:id="@+id/text_province_city_input"
-                            android:layout_width="115.22dp"
-                            android:layout_height="21dp"
-                            android:layout_gravity="top|left"
-                            android:layout_marginLeft="10.67dp"
-                            android:layout_marginTop="9dp"
-                            android:gravity="left|center_vertical"
-                            android:includeFontPadding="false"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:text="Tỉnh/thành phố"
-                            android:textColor="#FF8D92A3"
-                            android:textSize="14dp" />
-
-                        <ImageView
-                            android:id="@+id/image_chevron_right"
-                            android:layout_width="25.61dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="296.59dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="10.67dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/image_chevron_right" />
-                    </FrameLayout>
+                        android:padding="4dp"
+                        android:background="@drawable/rounded_border"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -222,46 +189,13 @@
                         android:textColor="#FF020202"
                         android:textSize="16dp" />
 
-                    <FrameLayout
-                        android:id="@+id/container_input4"
+                    <Spinner
+                        android:id="@+id/spWard"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/image_rectangle6"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/image_rectangle6"
-                            android:scaleType="centerCrop" />
-
-                        <TextView
-                            android:id="@+id/text_district_input"
-                            android:layout_width="92.82dp"
-                            android:layout_height="21dp"
-                            android:layout_gravity="top|left"
-                            android:layout_marginLeft="10.67dp"
-                            android:layout_marginTop="9dp"
-                            android:gravity="left|center_vertical"
-                            android:includeFontPadding="false"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:text="Quận/huyện"
-                            android:textColor="#FF8D92A3"
-                            android:textSize="14dp" />
-
-                        <ImageView
-                            android:id="@+id/image_chevron_right2"
-                            android:layout_width="25.61dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="296.59dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="10.67dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/image_chevron_right2" />
-                    </FrameLayout>
+                        android:padding="4dp"
+                        android:background="@drawable/rounded_border"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,46 +221,13 @@
                         android:textColor="#FF020202"
                         android:textSize="16dp" />
 
-                    <FrameLayout
-                        android:id="@+id/container_input3"
+                    <Spinner
+                        android:id="@+id/spTown"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/image_rectangle5"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/image_rectangle5"
-                            android:scaleType="centerCrop" />
-
-                        <TextView
-                            android:id="@+id/text_ward_village_input"
-                            android:layout_width="82.15dp"
-                            android:layout_height="21dp"
-                            android:layout_gravity="top|left"
-                            android:layout_marginLeft="10.67dp"
-                            android:layout_marginTop="9dp"
-                            android:gravity="left|center_vertical"
-                            android:includeFontPadding="false"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:text="Phường/xã"
-                            android:textColor="#FF8D92A3"
-                            android:textSize="14dp" />
-
-                        <ImageView
-                            android:id="@+id/image_chevron_right1"
-                            android:layout_width="25.61dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="top"
-                            android:layout_marginLeft="296.59dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="10.67dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/image_chevron_right1" />
-                    </FrameLayout>
+                        android:padding="4dp"
+                        android:background="@drawable/rounded_border"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -337,7 +238,7 @@
                     android:layout_marginTop="19dp"
                     android:layout_marginRight="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/container_input_label2"
+                    android:background="@drawable/checkout_container_input_label"
                     android:gravity="left|top"
                     android:orientation="vertical">
 
@@ -356,12 +257,11 @@
 
                     <EditText
                         android:id="@+id/etAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_weight="1"
                         android:background="@drawable/rounded_border"
                         android:hint="Số nhà, tên đường..."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:padding="8dp"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -374,7 +274,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/container_input_label1"
+                    android:background="@drawable/checkout_container_input_label"
                     android:gravity="left|top"
                     android:orientation="vertical">
 
@@ -394,12 +294,11 @@
                     <EditText
                         android:id="@+id/etMessage"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:layout_weight="1"
+                        android:padding="8dp"
                         android:background="@drawable/rounded_border"
                         android:hint="Nhắn gửi lời chúc đến người thân yêu..."
-                        android:padding="8dp"
                         android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -437,7 +336,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="top|left"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_item" />
+                        android:src="@drawable/checkout_image_item" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -459,7 +358,7 @@
                         android:layout_marginLeft="311dp"
                         android:layout_marginRight="1dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_cancel" />
+                        android:src="@drawable/checkout_image_cancel" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -488,7 +387,7 @@
                             android:layout_height="24dp"
                             android:layout_gravity="left"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_minus" />
+                            android:src="@drawable/checkout_image_minus" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -510,7 +409,7 @@
                             android:layout_height="24dp"
                             android:layout_marginLeft="60dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_plus" />
+                            android:src="@drawable/checkout_image_plus" />
                     </FrameLayout>
 
                     <ImageView
@@ -518,7 +417,7 @@
                         android:layout_height="1dp"
                         android:layout_gravity="left"
                         android:layout_marginTop="71dp"
-                        android:background="@drawable/image_item_bg"
+                        android:background="@drawable/checkout_image_item_bg"
                         android:scaleType="centerCrop" />
                 </FrameLayout>
 
@@ -532,7 +431,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="top|left"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_item" />
+                        android:src="@drawable/checkout_image_item" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -554,7 +453,7 @@
                         android:layout_marginLeft="311dp"
                         android:layout_marginRight="1dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_cancel" />
+                        android:src="@drawable/checkout_image_cancel" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -583,7 +482,7 @@
                             android:layout_height="24dp"
                             android:layout_gravity="left"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_minus" />
+                            android:src="@drawable/checkout_image_minus" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -605,7 +504,7 @@
                             android:layout_height="24dp"
                             android:layout_marginLeft="60dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_plus" />
+                            android:src="@drawable/checkout_image_plus" />
                     </FrameLayout>
 
                     <ImageView
@@ -613,7 +512,7 @@
                         android:layout_height="1dp"
                         android:layout_gravity="left"
                         android:layout_marginTop="71dp"
-                        android:background="@drawable/image_item_bg"
+                        android:background="@drawable/checkout_image_item_bg"
                         android:scaleType="centerCrop" />
                 </FrameLayout>
 
@@ -627,7 +526,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="top|left"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_item" />
+                        android:src="@drawable/checkout_image_item" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -649,7 +548,7 @@
                         android:layout_marginLeft="311dp"
                         android:layout_marginRight="1dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_cancel" />
+                        android:src="@drawable/checkout_image_cancel" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -678,7 +577,7 @@
                             android:layout_height="24dp"
                             android:layout_gravity="left"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_minus" />
+                            android:src="@drawable/checkout_image_minus" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -700,7 +599,7 @@
                             android:layout_height="24dp"
                             android:layout_marginLeft="60dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/image_plus" />
+                            android:src="@drawable/checkout_image_plus" />
                     </FrameLayout>
 
                     <ImageView
@@ -708,7 +607,7 @@
                         android:layout_height="1dp"
                         android:layout_gravity="left"
                         android:layout_marginTop="71dp"
-                        android:background="@drawable/image_item_bg"
+                        android:background="@drawable/checkout_image_item_bg"
                         android:scaleType="centerCrop" />
                 </FrameLayout>
 
@@ -717,7 +616,7 @@
                     android:layout_width="375dp"
                     android:layout_height="5dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/image_promo_bg"
+                    android:background="@drawable/checkout_image_promo_bg"
                     android:scaleType="centerInside" />
 
 
@@ -764,7 +663,7 @@
                     android:layout_width="375dp"
                     android:layout_height="5dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/image_footer_bg"
+                    android:background="@drawable/checkout_image_footer_bg"
                     android:scaleType="centerInside" />
             </LinearLayout>
         </LinearLayout>
@@ -875,7 +774,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/container_button_checkout"
+            android:background="@drawable/checkout_container_button_checkout"
             android:clipToPadding="false"
             android:layout_gravity="center"
             android:orientation="horizontal"
