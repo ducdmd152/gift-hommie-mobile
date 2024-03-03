@@ -3,7 +3,8 @@
     android:id="@+id/llCartItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/Theme.Gifthommiemobile">
 
     <FrameLayout
         android:id="@+id/flCartItem"
@@ -34,6 +35,7 @@
             android:textSize="12dp" />
 
         <ImageView
+            android:id="@+id/ivDelete"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="top|right"
