@@ -15,4 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnTestCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Checkout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="470dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

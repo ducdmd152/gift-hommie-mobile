@@ -2,8 +2,10 @@ package com.mobilers.gift_hommie_mobile.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.mobilers.gift_hommie_mobile.R;
@@ -49,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<ProductListResponseDTO> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        Button btnTestCheckout = findViewById(R.id.btnTestCheckout);
+        btnTestCheckout.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CheckoutActivity.class);
+            startActivity(intent);
         });
     }
 }
