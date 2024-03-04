@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_order_complete"
+    android:layout_width="match_parent"
+    android:layout_height="812dp"
+    android:background="@drawable/complete_checkout_container_order_complete"
+    android:gravity="left|top"
+    android:orientation="vertical">
+  <LinearLayout
+      android:id="@+id/container_group"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="116dp"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/container_group1"
+        android:layout_width="164dp"
+        android:layout_height="164dp">
+
+      <ImageView
+          android:id="@+id/img_rectangle"
+          android:layout_width="match_parent"
+          android:layout_height="164dp"
+          android:background="@drawable/complete_checkout_img_rectangle"
+          android:scaleType="centerCrop" />
+
+      <FrameLayout
+          android:id="@+id/container_group2"
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:layout_marginLeft="32dp"
+          android:layout_marginRight="32dp"
+          android:layout_marginTop="32dp"
+          android:layout_marginBottom="32dp">
+
+        <ImageView
+            android:id="@+id/img_rectangle1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/complete_checkout_img_rectangle1"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/img_checkmark"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="29dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/complete_checkout_img_checkmark" />
+      </FrameLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text_congratulations"
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Đặt hàng thành công!"
+        android:textColor="#FF27214D"
+        android:textSize="26dp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/text_order_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:text="Đơn hàng của bạn đã được đặt thành công, chúng tôi sẽ sớm giao đơn hàng đến bạn ."
+        android:textColor="#655B9F"
+        android:textSize="16dp"
+        android:layout_marginTop="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/btnBackToHome"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="56dp"
+      android:layout_gravity="center"
+      android:background="@drawable/complete_checkout_container_frame"
+      android:clipToPadding="false"
+      android:gravity="left|center_vertical"
+      android:orientation="horizontal"
+      android:paddingBottom="16dp"
+      android:paddingLeft="32dp"
+      android:paddingRight="32dp"
+      android:paddingTop="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Tiếp tục mua sắm"
+        android:textColor="#FFFFFFFF"
+        android:textSize="16dp" />
+  </LinearLayout>
+</LinearLayout>
