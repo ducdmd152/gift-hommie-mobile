@@ -7,8 +7,53 @@
     android:orientation="vertical"
     android:gravity="center"
     android:theme="@style/Theme.Gifthommiemobile">
+    <LinearLayout
+        android:id="@+id/header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:backgroundTint="@color/white"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Phương thức thanh toán"
+            android:textStyle="bold"
+            android:textColor="#FF121212"
+            android:textSize="28dp" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vui lòng chọn hình thức thanh toán cho đơn hàng"
+        android:textStyle="italic"
+        android:textColor="#FF121212"
+        android:textSize="14dp"/>
+    <TextView
+        android:id="@+id/btnCOD"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán khi nhận hàng (COD)"
+        android:padding="19dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/cod_bg"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        />
     <com.paypal.checkout.paymentbutton.PaymentButtonContainer
-        android:id="@+id/payment_button_container"
+        android:id="@+id/btnPaypal"
+        android:layout_marginTop="14dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:paypal_button_color="silver"
