@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.paypal.checkout.approve.Approval;
 import com.paypal.checkout.approve.OnApprove;
@@ -30,17 +31,22 @@ import com.paypal.checkout.paymentbutton.PaymentButtonContainer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PaymentActivity extends AppCompatActivity {
     private static final String TAG = "PAYMENT: ";
     PaymentButtonContainer btnPaypal;
     TextView btnCOD;
+    double rate = 0.000042;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        CheckoutDTO checkoutDTO = GlobalService.getInstance().getCheckoutDTO();
         btnCOD = findViewById(R.id.btnCOD);
         btnPaypal = findViewById(R.id.btnPaypal);
+        String amount = String.format(Locale.US, "%.2f", (checkoutDTO.getTotal()*rate));
+        Log.i("Payment Amount: ", checkoutDTO.getTotal() + " VND -> $" + amount);
 
         btnCOD.setOnClickListener(v -> {
 //            GlobalService.getInstance().getCheckoutDTO().setPaymentMethod(1);
@@ -59,7 +65,7 @@ public class PaymentActivity extends AppCompatActivity {
                                         .amount(
                                                 new Amount.Builder()
                                                         .currencyCode(CurrencyCode.USD)
-                                                        .value("10.00")
+                                                        .value(amount)
                                                         .build()
                                         )
                                         .build()

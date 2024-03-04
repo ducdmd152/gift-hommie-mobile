@@ -2,6 +2,8 @@ package com.mobilers.gift_hommie_mobile.model.checkout;
 
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CheckoutDTO {
@@ -19,12 +21,18 @@ public class CheckoutDTO {
     private int paymentMethod;
     private float shippingFee;
     private int shippingMethod;
-    private String expectedDeliveryTime;
+    private LocalDateTime expectedDeliveryTime;
 
     public CheckoutDTO() {
+        shippingFee = 20000;
+        shippingMethod = 1;
+        paymentMethod = 1;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            expectedDeliveryTime = LocalDateTime.now().plusDays(1);
+        }
     }
 
-    public CheckoutDTO(String name, String phone, String address, String wardName, String districtName, String provinceName, int wardCode, int districtID, int provinceID, String message, List<CartDTO> carts, int paymentMethod, float shippingFee, int shippingMethod, String expectedDeliveryTime) {
+    public CheckoutDTO(String name, String phone, String address, String wardName, String districtName, String provinceName, int wardCode, int districtID, int provinceID, String message, List<CartDTO> carts, int paymentMethod, float shippingFee, int shippingMethod, LocalDateTime expectedDeliveryTime) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -154,11 +162,17 @@ public class CheckoutDTO {
         this.shippingMethod = shippingMethod;
     }
 
-    public String getExpectedDeliveryTime() {
+    public LocalDateTime getExpectedDeliveryTime() {
         return expectedDeliveryTime;
     }
 
-    public void setExpectedDeliveryTime(String expectedDeliveryTime) {
+    public void setExpectedDeliveryTime(LocalDateTime expectedDeliveryTime) {
         this.expectedDeliveryTime = expectedDeliveryTime;
+    }
+    public float getTotal() {
+        float total = shippingFee;
+        for(CartDTO cart : carts)
+            total += cart.getTotal();
+        return total;
     }
 }

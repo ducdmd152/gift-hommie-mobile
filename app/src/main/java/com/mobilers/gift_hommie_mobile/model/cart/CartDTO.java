@@ -7,24 +7,21 @@ public class CartDTO {
     private int productId;
     private int quantity;
     private Product product;
-    private double total;
 
     public CartDTO() {
     }
 
-    public CartDTO(int id, int productId, int quantity, double total) {
+    public CartDTO(int id, int productId, int quantity) {
         this.id = id;
         this.productId = productId;
         this.quantity = quantity;
-        this.total = total;
     }
 
-    public CartDTO(int id, int productId, int quantity, Product product, double total) {
+    public CartDTO(int id, int productId, int quantity, Product product) {
         this.id = id;
         this.productId = productId;
         this.quantity = quantity;
         this.product = product;
-        this.total = total;
     }
 
     public int getId() {
@@ -60,10 +57,6 @@ public class CartDTO {
     }
 
     public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+        return quantity*product.getPrice();
     }
 }

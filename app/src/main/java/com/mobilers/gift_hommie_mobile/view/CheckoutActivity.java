@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -131,8 +132,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
         List<CartDTO> carts = new ArrayList<>();
-        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1), 150000));
-        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1), 150000));
+        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1)));
+        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1)));
         checkoutDTO.setCarts(carts);
 
         // mapping data to ui
@@ -270,30 +271,47 @@ public class CheckoutActivity extends AppCompatActivity {
         });
 
         btnCheckout.setOnClickListener(v -> {
+//            checkoutFormValidation();
+
             String name = etName.getText().toString();
             String phone = etPhone.getText().toString();
             String address = etAddress.getText().toString();
             String message = etMessage.getText().toString();
-            if (name.trim().length() < 4) {
-                Toast.makeText(context, "Vui lòng nhập tên người nhận hợp lệ, ít nhất 4 kí tự!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (phone.isEmpty()) {
-                Toast.makeText(context, "Vui lòng nhập số điện thoại!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (!phone.matches("^[+]?[0-9]{10,13}$")) {
-                Toast.makeText(context, "Vui lòng nhập số điện thoại hợp lệ!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (checkoutDTO.getProvinceID() == 0 || checkoutDTO.getDistrictID() == 0 || checkoutDTO.getWardCode() == 0) {
-                Toast.makeText(context, "Vui lòng chọn đầy đủ thông tin địa chỉ!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (address.isEmpty()) {
-                Toast.makeText(context, "Vui lòng nhập địa chỉ cụ thể!", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
+
+            checkoutDTO.setName(name);
+            checkoutDTO.setPhone(phone);
+            checkoutDTO.setAddress(address);
+            checkoutDTO.setMessage(message);
+            Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
+            startActivity(intent);
         });
+    }
+
+    private void checkoutFormValidation() {
+        String name = etName.getText().toString();
+        String phone = etPhone.getText().toString();
+        String address = etAddress.getText().toString();
+        String message = etMessage.getText().toString();
+        if (name.trim().length() < 4) {
+            Toast.makeText(context, "Vui lòng nhập tên người nhận hợp lệ, ít nhất 4 kí tự!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (phone.isEmpty()) {
+            Toast.makeText(context, "Vui lòng nhập số điện thoại!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!phone.matches("^[+]?[0-9]{10,13}$")) {
+            Toast.makeText(context, "Vui lòng nhập số điện thoại hợp lệ!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (checkoutDTO.getProvinceID() == 0 || checkoutDTO.getDistrictID() == 0 || checkoutDTO.getWardCode() == 0) {
+            Toast.makeText(context, "Vui lòng chọn đầy đủ thông tin địa chỉ!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (address.isEmpty()) {
+            Toast.makeText(context, "Vui lòng nhập địa chỉ cụ thể!", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 }
