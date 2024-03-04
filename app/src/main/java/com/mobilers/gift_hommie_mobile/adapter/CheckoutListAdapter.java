@@ -119,6 +119,10 @@ public class CheckoutListAdapter extends RecyclerView.Adapter<CheckoutListAdapte
         }
 
         private void confirmToDelete() {
+            if (adapter.list == null || adapter.list.size() <= 1) {
+                Toast.makeText(adapter.context, "Bạn không thể xóa, để checkout cần ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             AlertDialog.Builder dialog = new androidx.appcompat.app.AlertDialog.Builder(adapter.context);
             dialog.setMessage("Bạn muốn xóa " + item.getProduct().getName() + " khỏi danh sách!");
             dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

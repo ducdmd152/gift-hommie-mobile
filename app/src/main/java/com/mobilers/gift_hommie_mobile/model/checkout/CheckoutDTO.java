@@ -169,6 +169,13 @@ public class CheckoutDTO {
     public void setExpectedDeliveryTime(LocalDateTime expectedDeliveryTime) {
         this.expectedDeliveryTime = expectedDeliveryTime;
     }
+
+    public float getProductCost() {
+        float total = 0;
+        for(CartDTO cart : carts)
+            total += cart.getTotal();
+        return total;
+    }
     public float getTotal() {
         float total = shippingFee;
         for(CartDTO cart : carts)

@@ -35,6 +35,7 @@ import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.ghn.GHNApiClient;
 import com.mobilers.gift_hommie_mobile.service.ghn.GHNService;
+import com.mobilers.gift_hommie_mobile.util.Util;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,7 +50,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private GlobalService globalService;
     private CheckoutDTO checkoutDTO;
     private EditText etName, etPhone, etAddress, etMessage, etVoucherCode;
-    private TextView tvBtnApplyVoucher, btnCheckout;
+    private TextView tvBtnApplyVoucher, btnCheckout, tvProductFee, tvShipFee, tvTotal;
     private Spinner spProvince, spDistrict, spWard;
     private RecyclerView rvCheckoutList;
     @Override
@@ -83,10 +84,14 @@ public class CheckoutActivity extends AppCompatActivity {
         rvCheckoutList = findViewById(R.id.rvCheckoutList);
 
         tvBtnApplyVoucher = findViewById(R.id.tvBtnApplyVoucher);
+        tvProductFee = findViewById(R.id.tvProductFee);
+        tvShipFee = findViewById(R.id.tvShipFee);
+        tvTotal = findViewById(R.id.tvTotal);
         btnCheckout = findViewById(R.id.btnCheckout);
     }
 
     private void initData() {
+
         // load data
         List<AddressItem> provinces = new ArrayList<>();
         provinces.add(new AddressItem(0, "Tỉnh/thành phố"));
@@ -259,6 +264,14 @@ public class CheckoutActivity extends AppCompatActivity {
         CheckoutListAdapter checkoutListAdapter = new CheckoutListAdapter(context, checkoutDTO.getCarts());
         rvCheckoutList.setAdapter(checkoutListAdapter);
         rvCheckoutList.setLayoutManager (new LinearLayoutManager(this));
+        updateCheckoutSummary();
+        checkoutListAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                updateCheckoutSummary();
+            }
+        });
     }
     private void events() {
         tvBtnApplyVoucher.setOnClickListener(v -> {
@@ -313,5 +326,11 @@ public class CheckoutActivity extends AppCompatActivity {
             Toast.makeText(context, "Vui lòng nhập địa chỉ cụ thể!", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    private void updateCheckoutSummary() {
+        tvProductFee.setText(Util.formatPriceVND(checkoutDTO.getProductCost()));
+        tvShipFee.setText(Util.formatPriceVND(checkoutDTO.getShippingFee()));
+        tvTotal.setText(Util.formatPriceVND(checkoutDTO.getTotal()));
     }
 }
