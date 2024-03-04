@@ -58,5 +58,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, CheckoutActivity.class);
             startActivity(intent);
         });
+        Button btnTestPayment = findViewById(R.id.btnTestPayment);
+        btnTestPayment.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -7,7 +7,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mobilers.gift_hommie_mobile"
+        applicationId = "com.mobilers.gifthommiemobile"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -38,4 +38,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.5.0")
     implementation("com.squareup.retrofit2:converter-gson:2.4.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("com.paypal.checkout:android-sdk:1.2.1")
+    implementation("org.jfrog.cardinalcommerce.gradle:cardinalmobilesdk:2.2.7-2")
 }
