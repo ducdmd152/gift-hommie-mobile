@@ -89,7 +89,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -97,7 +97,7 @@
         android:textSize="14sp"
         android:textAlignment="center"
         android:id="@+id/signinText"
-        android:textColor="#9C27B0"
+        android:textColor="#E0D2E3"
         android:layout_marginBottom="20dp"/>
 
 </LinearLayout>
