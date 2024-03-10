@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
             startActivity(intent);
         });
+        Button btnTestChat = findViewById(R.id.btn_testChat);
+        btnTestChat.setOnClickListener(v -> {
+            Intent chatIntent = new Intent(getApplicationContext(), TestChatLogin.class);
+            startActivity(chatIntent);
+        });
     }
 
     @Override
