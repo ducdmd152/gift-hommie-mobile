@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,4 +41,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation("com.paypal.checkout:android-sdk:1.2.1")
     implementation("org.jfrog.cardinalcommerce.gradle:cardinalmobilesdk:2.2.7-2")
+
+    implementation("com.google.firebase:firebase-firestore:24.10.3")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 }
