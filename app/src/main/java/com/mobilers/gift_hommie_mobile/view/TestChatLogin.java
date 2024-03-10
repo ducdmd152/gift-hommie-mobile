@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.mobilers.gift_hommie_mobile.R;
-import com.mobilers.gift_hommie_mobile.firebase.UserDTO;
+import com.mobilers.gift_hommie_mobile.model.firebase.UserDTO;
 import com.mobilers.gift_hommie_mobile.util.FirebaseUtil;
 
 

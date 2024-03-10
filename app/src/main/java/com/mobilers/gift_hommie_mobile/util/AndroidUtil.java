@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.mobilers.gift_hommie_mobile.firebase.UserDTO;
+import com.mobilers.gift_hommie_mobile.model.firebase.UserDTO;
 
 public class AndroidUtil {
     public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
-    public static void passUserModelAsIntent(Intent mIntent, UserDTO uModel) {
+    public static void passUserModelAsIntent(Intent mIntent, UserDTO uModel, String mId) {
+        mIntent.putExtra("mId", mId);
         mIntent.putExtra("uId", uModel.getUId());
         mIntent.putExtra("username", uModel.getUsername());
     }

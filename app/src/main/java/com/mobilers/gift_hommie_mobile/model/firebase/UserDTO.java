@@ -1,4 +1,4 @@
-package com.mobilers.gift_hommie_mobile.firebase;
+package com.mobilers.gift_hommie_mobile.model.firebase;
 
 import com.google.firebase.Timestamp;
 
