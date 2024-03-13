@@ -1,6 +1,7 @@
 package com.mobilers.gift_hommie_mobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
+import com.mobilers.gift_hommie_mobile.view.ProductDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        Product product = productList.get(position);
+        Product product = filteredProductList.get(position); // Change here to use filteredProductList
         holder.tvProductName.setText(product.getName());
         holder.tvProductPrice.setText("Giá: " + product.getPrice() + " đ");
 
@@ -48,6 +50,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 .placeholder(R.drawable.placeholder_image) // Hình ảnh placeholder khi đang tải
                 .error(R.drawable.error_image) // Hình ảnh hiển thị khi có lỗi
                 .into(holder.ivProductImage); // Hiển thị trong ImageView
+
+        // Add click listener for item view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create Intent to start ProductDetailsActivity and pass product object and image URL
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+                intent.putExtra("product", product);
+                intent.putExtra("imageUrl", product.getAvatar()); // Pass image URL
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -82,6 +96,4 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
         notifyDataSetChanged();
     }
-
-
 }
