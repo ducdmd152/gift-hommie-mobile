@@ -27,5 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Test Payment" />
+    <Button
+        android:id="@+id/btnTestCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Cart" />
 
 </LinearLayout>
