@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
             startActivity(intent);
         });
+        Button btnProductList = findViewById(R.id.btnProductList);
+        btnProductList.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     @Override

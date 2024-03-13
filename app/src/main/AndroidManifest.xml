@@ -19,7 +19,7 @@
 
         <activity
             android:name=".view.ProductListActivity"
-            android:exported="true" />
+            android:exported="false" />
 
         <activity
             android:name=".CartActivity"
@@ -35,7 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

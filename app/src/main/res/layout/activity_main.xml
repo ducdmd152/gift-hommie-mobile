@@ -32,5 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Test Cart" />
+    <!-- Add Button to navigate to ProductListActivity -->
+    <Button
+        android:id="@+id/btnProductList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product List" />
 
 </LinearLayout>
