@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Đơn hàng tôi"
+        android:textSize="30dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/order_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tất cả"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                    <Button
+                        android:id="@+id/ordered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="đã đặt hàng"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                    <Button
+                        android:id="@+id/delivering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="đang giao"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                    <Button
+                        android:id="@+id/accomplished"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="đã hoàn thành"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                    <Button
+                        android:id="@+id/cancelled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="đã hủy"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                    <Button
+                        android:id="@+id/failure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="thất bại"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/order_custom_buttom_order_managemet"/>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lvLegends"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt;"
+            android:background="#FFFF"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:background="#FFFF"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&gt;"
+            android:background="#FFFF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp">
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/order_icon_home"
+            android:background="@drawable/order_custom_buttom_order_managemet"
+            android:layout_marginStart="10dp"/>
+
+        <ImageButton
+            android:id="@+id/gio_hang"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/order_icon_giohang"
+            android:background="@drawable/order_custom_buttom_order_managemet"
+            android:layout_marginStart="10dp"/>
+
+        <ImageButton
+            android:id="@+id/avatar"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/order_icon_avatar"
+            android:background="@drawable/order_custom_buttom_order_managemet"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+</LinearLayout>
