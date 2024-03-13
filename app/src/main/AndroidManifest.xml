@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.CompetePaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ChatActivity"
             android:exported="false" />
         <activity
@@ -27,15 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".view.TestChatLogin"
-            android:exported="false" />
-        <activity
-            android:name=".view.CompetePaymentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.PaymentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"

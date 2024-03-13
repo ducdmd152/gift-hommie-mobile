@@ -37,12 +37,11 @@ public class MainActivity extends AppCompatActivity {
                     ProductListResponseDTO body = response.body();
                     if (body != null && body.getContent() != null) {
                         for (Product product : body.getContent()) {
-                            Log.d(" Product: " + product.getId() , product.getName());
+                            Log.d(" Product: " + product.getId(), product.getName());
                         }
                     }
                     Toast.makeText(MainActivity.this, "Loaded items successfully!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(MainActivity.this, "Something wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -52,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
             }
         });
-
+        Button btnTestChat = findViewById(R.id.btn_testChat);
+        btnTestChat.setOnClickListener(v -> {
+            Intent chatIntent = new Intent(getApplicationContext(), TestChatLogin.class);
+            startActivity(chatIntent);
+        });
         Button btnTestCheckout = findViewById(R.id.btnTestCheckout);
         btnTestCheckout.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CheckoutActivity.class);
@@ -62,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
         btnTestPayment.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
             startActivity(intent);
-        });
-        Button btnTestChat = findViewById(R.id.btn_testChat);
-        btnTestChat.setOnClickListener(v -> {
-            Intent chatIntent = new Intent(getApplicationContext(), TestChatLogin.class);
-            startActivity(chatIntent);
         });
     }
 
