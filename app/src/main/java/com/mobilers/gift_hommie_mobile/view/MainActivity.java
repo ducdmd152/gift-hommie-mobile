@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
@@ -61,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         Button btnTestPayment = findViewById(R.id.btnTestPayment);
         btnTestPayment.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+            startActivity(intent);
+        });
+        Button btnTestCart = findViewById(R.id.btnTestCart);
+        btnTestCart.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CartActivity.class);
             startActivity(intent);
         });
     }
