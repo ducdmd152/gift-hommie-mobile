@@ -42,4 +42,8 @@ dependencies {
     implementation("org.jfrog.cardinalcommerce.gradle:cardinalmobilesdk:2.2.7-2")
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+    // Thêm dependencies của Glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 }

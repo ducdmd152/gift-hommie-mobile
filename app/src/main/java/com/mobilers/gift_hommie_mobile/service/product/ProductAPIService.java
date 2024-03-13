@@ -30,6 +30,18 @@ public class ProductAPIService {
         call.enqueue(callback);
     }
 
+
+    //new import:
+
+
+    public void getProductsByCategory(int categoryId, Callback<ProductListResponseDTO> callback) {
+        Call<ProductListResponseDTO> call = apiService.getProductsByCategory(endpoint, categoryId);
+        call.enqueue(callback);
+    }
+    public void getAllProducts(Callback<ProductListResponseDTO> callback) {
+        Call<ProductListResponseDTO> call = apiService.getAllProducts(endpoint);
+        call.enqueue(callback);
+    }
 //    public void create(Product model, Callback<Product> callback) {
 //        Call<Product> call = apiService.create(endpoint, model);
 //        call.enqueue(callback);
