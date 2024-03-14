@@ -2,31 +2,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="4dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/detail_product"
+        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/content_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/page_detail_product_ek1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:orientation="vertical">
+
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/imgAvatar"
                     android:layout_width="match_parent"
-                    android:padding="20dp"
-                    android:layout_height="284dp"
+                    android:layout_height="320dp"
                     android:contentDescription="series_7"
                     android:src="@drawable/series_7" />
 
@@ -34,15 +35,17 @@
                     android:id="@+id/details"
                     android:gravity="left|center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:background="@color/white">
                     <LinearLayout
                         android:orientation="horizontal"
                         android:id="@+id/headline"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_marginTop="20dp">
 
                         <RelativeLayout
@@ -88,7 +91,7 @@
                             android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:id="@+id/tvPrice"
-                            android:layout_width="78.4dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="26.4dp"
                             android:text="@string/__799_string"
                             android:textColor="#FF9800"

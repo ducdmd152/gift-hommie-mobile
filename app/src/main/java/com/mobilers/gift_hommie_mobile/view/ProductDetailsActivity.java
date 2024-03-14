@@ -48,7 +48,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             Glide.with(this).load(imageUrl).into(imgAvatar); // Load and display image from URL
             tvProductName.setText(product.getName());
             tvPrice.setText(product.getPrice()+"đ");
-            tvQuantity.setText("Số lượng: " + product.getQuantity());
+            tvQuantity.setText("Số lượng còn lại: " + product.getQuantity());
             tvDescription.setText(product.getDescription());
 
             // Handle Add to Cart button click
