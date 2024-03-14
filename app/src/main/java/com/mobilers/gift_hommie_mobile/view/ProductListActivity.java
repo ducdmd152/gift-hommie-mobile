@@ -1,10 +1,10 @@
 package com.mobilers.gift_hommie_mobile.view;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -43,12 +43,16 @@ public class ProductListActivity extends AppCompatActivity {
         // Thực hiện setup Spinner với danh sách danh mục sản phẩm
         setupCategorySpinner();
 
-        Button btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        // Xử lý sự kiện nhấn phím Enter trên EditText để thực hiện tìm kiếm
+        etSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onClick(View v) {
-                String keyword = etSearch.getText().toString().trim();
-                performSearch(keyword);
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    String keyword = etSearch.getText().toString().trim();
+                    performSearch(keyword);
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -74,14 +78,12 @@ public class ProductListActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Không làm gì khi không có danh mục nào được chọn
             }
         });
     }
-
 
     private void displayAllProducts() {
         ProductAPIService productAPIService = new ProductAPIService();
