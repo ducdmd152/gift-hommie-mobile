@@ -2,6 +2,7 @@ package com.mobilers.gift_hommie_mobile.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.cart.CartListResponseDTO;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
 
 import java.util.List;
@@ -47,6 +49,13 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     public void onBindViewHolder(@NonNull CartListHolder holder, int position) {
         CartDTO cartItem = list.get(position);
         holder.bind(cartItem, listener);
+        if (GlobalService.getInstance().getCheckoutDTO().getCarts().contains(cartItem)) {
+            holder.itemView.setBackgroundColor(Color.rgb(153, 255, 255));
+            holder.ivRetangle.setVisibility(View.GONE);
+        } else {
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+            holder.ivRetangle.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -66,7 +75,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         private CartListAdapter adapter;
         private CartDTO item;
         private TextView tvName, tvPrice, tvQuantity;
-        private ImageView ivMinus, ivPlus, ivDelete, ivProduct;
+        private ImageView ivMinus, ivPlus, ivDelete, ivProduct, ivRetangle;
         CartAPIService cartAPIService = new CartAPIService();
 
         //        private ImageView
@@ -80,6 +89,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             ivPlus = itemView.findViewById(R.id.ivPlus);
             ivDelete = itemView.findViewById(R.id.ivDelete);
             ivProduct = itemView.findViewById(R.id.ivProduct);
+            ivRetangle = itemView.findViewById(R.id.ivRetangle);
         }
 
         public void bind(CartDTO item, final OnItemClickListener listener) {
@@ -93,6 +103,19 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
                     confirmToDelete();
                 } else {
                     item.setQuantity(item.getQuantity() - 1);
+                    cartAPIService.update(item.getId(), item, new Callback<CartDTO>() {
+                        @Override
+                        public void onResponse(Call<CartDTO> call, Response<CartDTO> response) {
+                            if (response.isSuccessful()) {
+                            } else {
+                                Toast.makeText(adapter.context, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<CartDTO> call, Throwable t) {
+//                            Toast.makeText(adapter.context, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     adapter.notifyDataSetChanged();
                 }
             });
@@ -101,6 +124,19 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
                     Toast.makeText(adapter.context, "Số lượng sản phẩm " + item.getProduct().getName() + " đã được thêm hết vào danh sách!", Toast.LENGTH_SHORT).show();
                 } else {
                     item.setQuantity(item.getQuantity() + 1);
+                    cartAPIService.update(item.getId(), item, new Callback<CartDTO>() {
+                        @Override
+                        public void onResponse(Call<CartDTO> call, Response<CartDTO> response) {
+                            if (response.isSuccessful()) {
+                            } else {
+                                Toast.makeText(adapter.context, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<CartDTO> call, Throwable t) {
+//                            Toast.makeText(adapter.context, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     adapter.notifyDataSetChanged();
                 }
             });
