@@ -4,6 +4,7 @@ import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutDTO {
@@ -24,9 +25,9 @@ public class CheckoutDTO {
     private String expectedDeliveryTime;
 
     public CheckoutDTO() {
-        shippingFee = 20000;
         shippingMethod = 1;
         paymentMethod = 1;
+        carts = new ArrayList<>();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             expectedDeliveryTime = LocalDateTime.now().plusDays(1).toString();
         }
