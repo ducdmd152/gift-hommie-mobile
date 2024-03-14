@@ -21,6 +21,11 @@ public class GlobalService {
         return instance;
     }
 
+    public void clear() {
+        account = null;
+        isAuthenticated = false;
+    }
+
     public CheckoutDTO getCheckoutDTO() {
         return checkoutDTO;
     }

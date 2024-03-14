@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mobilers.gift_hommie_mobile.R;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 
 public class User_Page_Activity extends AppCompatActivity {
 
@@ -21,6 +23,19 @@ public class User_Page_Activity extends AppCompatActivity {
         Button btnChat = findViewById(R.id.btnChat);
         Button btnAddress = findViewById(R.id.btnAddress);
         Button btnLogout = findViewById(R.id.btnLogout);
+        TextView tvName = findViewById(R.id.tvName);
+        TextView tvEmail = findViewById(R.id.tvEmail);
+
+        tvName.setText(GlobalService.getInstance().getAccount().getFirstName() + GlobalService.getInstance().getAccount().getLastName());
+        tvEmail.setText(GlobalService.getInstance().getAccount().getEmail());
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalService.getInstance().clear();
+                Intent intent = new Intent(User_Page_Activity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
