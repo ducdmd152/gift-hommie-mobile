@@ -37,20 +37,24 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
         // Set click listener for login button
         btnLogin.setOnClickListener(view ->{
-            GlobalService.getInstance().setAccount(new Account(edtUser.getText().toString().toLowerCase().trim(), edtPwd.getText().toString()));
+            GlobalService.getInstance().setAccount(new Account(
+                    edtUser.getText().toString().toLowerCase().trim(),
+                    edtPwd.getText().toString()));
             AuthAPIService apiService = new AuthAPIService();
             apiService.login(new Callback<Account>() {
                 @Override
                 public void onResponse(Call<Account> call, Response<Account> response) {
                     if (response.isSuccessful()) {
                         Account account = response.body();
+                        account.setPassword(edtPwd.getText().toString());
                         GlobalService.getInstance().setAccount(account);
+                        GlobalService.getInstance().setAuthenticated(true);
                         Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
                         startActivity(intent);
                     }
 
                     else {
-                        Toast.makeText(context, "Something wrong!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đăng nhập thất bại,\nvui lòng kiểm tra thông tin!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

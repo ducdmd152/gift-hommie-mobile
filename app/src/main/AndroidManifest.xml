@@ -16,7 +16,10 @@
         android:theme="@style/Theme.Gifthommiemobile"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.LoginActivity" />
+        <activity
+            android:name=".view.SignUpActivity" />
         <activity
             android:name=".view.ProductListActivity"
             android:exported="false" />
