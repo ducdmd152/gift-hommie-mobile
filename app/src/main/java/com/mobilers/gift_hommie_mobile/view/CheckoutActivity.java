@@ -268,15 +268,15 @@ public class CheckoutActivity extends AppCompatActivity {
                             updateCheckoutSummary();
                         }
                         else {
-                            checkoutDTO.setShippingFee(20000);
-                            updateCheckoutSummary();
+//                            checkoutDTO.setShippingFee(20000);
+//                            updateCheckoutSummary();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ShippingResponseDTO> call, Throwable t) {
-                        checkoutDTO.setShippingFee(20000);
-                        updateCheckoutSummary();
+//                        checkoutDTO.setShippingFee(20000);
+//                        updateCheckoutSummary();
                     }
                 });
             }
@@ -329,6 +329,26 @@ public class CheckoutActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<CheckoutDTO> call, Response<CheckoutDTO> response) {
                     if (response.isSuccessful()) {
+                        GHNService.createOrder(checkoutDTO, new Callback<ShippingResponseDTO>() {
+                            @Override
+                            public void onResponse(Call<ShippingResponseDTO> call, Response<ShippingResponseDTO> response) {
+                                if (response.isSuccessful()) {
+//                                    ShippingInfoDTO res = response.body().getData();
+//                                    checkoutDTO.setShippingFee(res.getTotal_fee());
+//                                    updateCheckoutSummary();
+                                }
+                                else {
+//                            checkoutDTO.setShippingFee(20000);
+//                            updateCheckoutSummary();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ShippingResponseDTO> call, Throwable t) {
+//                        checkoutDTO.setShippingFee(20000);
+//                        updateCheckoutSummary();
+                            }
+                        });
                         Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
                         startActivity(intent);
                     }
