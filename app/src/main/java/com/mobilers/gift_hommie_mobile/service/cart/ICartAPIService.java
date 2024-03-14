@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.DELETE;
 
 public interface ICartAPIService {
     @GET("{endpoint}")
@@ -23,4 +24,6 @@ public interface ICartAPIService {
     Call<CartDTO> create(@Path(value = "endpoint", encoded = true) String endpoint, @Body AddToCartDTO addToCartDTO);
 
 
+    @DELETE("{endpoint}/{id}")
+    Call<CartDTO> delete(@Path(value = "endpoint", encoded = true) String endpoint, @Path("id") Object id);
 }

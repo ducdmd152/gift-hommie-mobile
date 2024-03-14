@@ -33,6 +33,8 @@ public class CartAPIService {
 
         public void addToCart(AddToCartDTO model, Callback<CartDTO> callback) {
         Call<CartDTO> call = apiService.create(endpoint, model);
+    public void delete(int id, Callback<CartDTO> callback) {
+        Call<CartDTO> call = apiService.delete(endpoint, id);
         call.enqueue(callback);
     }
 }
