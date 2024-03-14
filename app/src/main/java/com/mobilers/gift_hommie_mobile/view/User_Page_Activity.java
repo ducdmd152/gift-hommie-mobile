@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 
 public class User_Page_Activity extends AppCompatActivity {

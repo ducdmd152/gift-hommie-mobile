@@ -19,7 +19,7 @@
         <activity
             android:name=".view.LoginActivity" />
         <activity
-            android:name=".view.ProductListActivity" />
+            android:name=".view.MainActivity" />
         <activity
             android:name=".view.SignUpActivity"
             android:exported="false" />
@@ -27,7 +27,7 @@
             android:name=".view.ProductDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".CartActivity"
+            android:name=".view.CartActivity"
             android:exported="false" />
         <activity
             android:name=".view.CompetePaymentActivity"
@@ -42,7 +42,7 @@
             android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.ProductListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

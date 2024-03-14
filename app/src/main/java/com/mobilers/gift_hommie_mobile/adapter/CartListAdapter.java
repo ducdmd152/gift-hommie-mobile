@@ -3,7 +3,6 @@ package com.mobilers.gift_hommie_mobile.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
-import com.mobilers.gift_hommie_mobile.model.cart.CartListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
 

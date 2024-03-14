@@ -9,16 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
-import com.mobilers.gift_hommie_mobile.service.APIClient;
-import com.mobilers.gift_hommie_mobile.service.APIService;
-import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

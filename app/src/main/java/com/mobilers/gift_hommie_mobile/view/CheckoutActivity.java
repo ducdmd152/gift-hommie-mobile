@@ -141,12 +141,6 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
 
-
-        List<CartDTO> carts = new ArrayList<>();
-        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1)));
-        carts.add(new CartDTO(127, 62, 1, new Product(62, "Cốc Sứ Họa Tiết", "", 333, 150000,"https://anh.quatructuyen.com/media/catalog/product/cache/1/image/480x480/9df78eab33525d08d6e5fb8d27136e95/c/_/c_c_s_h_a_ti_t_beautiful_girl_7.jpg", 1)));
-        checkoutDTO.setCarts(carts);
-
         // mapping data to ui
         spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

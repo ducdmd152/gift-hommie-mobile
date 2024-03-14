@@ -1,4 +1,4 @@
-package com.mobilers.gift_hommie_mobile;
+package com.mobilers.gift_hommie_mobile.view;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,20 +6,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
+import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.CartListAdapter;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.cart.CartListResponseDTO;
 import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
-import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
-import com.mobilers.gift_hommie_mobile.view.CheckoutActivity;
 
 import java.util.ArrayList;
 import java.util.List;

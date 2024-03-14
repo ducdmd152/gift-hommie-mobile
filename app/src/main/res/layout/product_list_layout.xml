@@ -82,16 +82,17 @@
         android:gravity="left|top"
         android:includeFontPadding="false"
         android:lineHeight="48dp"
-        android:text="CHÀO MỪNG BẠN ĐẾN  HOMIES SHOP"
+        android:text="CHÀO MỪNG BẠN ĐẾN HOMMIE SHOP"
         android:textColor="#FF1B153D"
-        android:textSize="36dp"
+        android:textSize="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container_menu_search"/>
 
     <TextView
         android:id="@+id/textCategory"
-        android:layout_width="65dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:padding="8dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/textview_border"
@@ -105,7 +106,8 @@
     <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="266dp"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner_border"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,8 +129,9 @@
     <!-- Product RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"
-        android:layout_width="367dp"
-        android:layout_height="352dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

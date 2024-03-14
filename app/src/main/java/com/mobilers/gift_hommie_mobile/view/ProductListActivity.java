@@ -77,12 +77,12 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedCategory = (String) parentView.getItemAtPosition(position);
-                if (selectedCategory.equals("Tất Cả")) {
+                if (position == 0) {
                     // Nếu người dùng chọn "Tất cả", hiển thị toàn bộ sản phẩm
                     displayAllProducts();
                 } else {
                     // Nếu không, lấy categoryId tương ứng với danh mục được chọn và lấy sản phẩm theo categoryId
-                    int categoryId = position + 1; // Ví dụ: position 0 sẽ có categoryId = 1
+                    int categoryId = position; // Ví dụ: position 0 sẽ có categoryId = 1
                     getProductsByCategory(categoryId);
                 }
             }
