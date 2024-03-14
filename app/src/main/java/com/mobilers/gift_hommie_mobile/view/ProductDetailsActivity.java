@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,13 +19,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ImageView imgAvatar;
     private TextView tvProductName, tvPrice, tvQuantity, tvDescription, tvReviews;
-    private Button btnAddToCart, btnBuyNow;
+    private TextView btnAddToCart, btnBuyNow;
     private RecyclerView rvReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_product_details_custom);
 
         // Initialize views
         imgAvatar = findViewById(R.id.imgAvatar);
@@ -32,10 +33,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvQuantity = findViewById(R.id.tvQuantity);
         tvDescription = findViewById(R.id.tvDescription);
-        tvReviews = findViewById(R.id.tvReviews);
+//        tvReviews = findViewById(R.id.tvReviews);
         btnAddToCart = findViewById(R.id.btnAddToCart);
-        btnBuyNow = findViewById(R.id.btnBuyNow);
-        rvReviews = findViewById(R.id.rvReviews);
+//        btnBuyNow = findViewById(R.id.btnBuyNow);
+//        rvReviews = findViewById(R.id.rvReviews);
 
         // Get the product data from the intent
         Product product = (Product) getIntent().getSerializableExtra("product");
@@ -46,8 +47,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             // Set product details to views
             Glide.with(this).load(imageUrl).into(imgAvatar); // Load and display image from URL
             tvProductName.setText(product.getName());
-            tvPrice.setText("Giá: " + product.getPrice()+"đ");
-            tvQuantity.setText("Số lượng: " + product.getQuantity());
+            tvPrice.setText(product.getPrice()+"đ");
+            tvQuantity.setText("Số lượng còn lại: " + product.getQuantity());
             tvDescription.setText(product.getDescription());
 
             // Handle Add to Cart button click
@@ -57,10 +58,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
             });
 
             // Handle Buy Now button click
-            btnBuyNow.setOnClickListener(v -> {
-                // Buy now logic here
-                Toast.makeText(ProductDetailsActivity.this, "Buying now", Toast.LENGTH_SHORT).show();
-            });
+//            btnBuyNow.setOnClickListener(v -> {
+//                // Buy now logic here
+//                Toast.makeText(ProductDetailsActivity.this, "Buying now", Toast.LENGTH_SHORT).show();
+//            });
 
             // Initialize and set up RecyclerView for reviews
             // Example:

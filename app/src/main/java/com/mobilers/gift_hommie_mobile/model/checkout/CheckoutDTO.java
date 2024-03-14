@@ -21,18 +21,18 @@ public class CheckoutDTO {
     private int paymentMethod;
     private float shippingFee;
     private int shippingMethod;
-    private LocalDateTime expectedDeliveryTime;
+    private String expectedDeliveryTime;
 
     public CheckoutDTO() {
         shippingFee = 20000;
         shippingMethod = 1;
         paymentMethod = 1;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            expectedDeliveryTime = LocalDateTime.now().plusDays(1);
+            expectedDeliveryTime = LocalDateTime.now().plusDays(1).toString();
         }
     }
 
-    public CheckoutDTO(String name, String phone, String address, String wardName, String districtName, String provinceName, int wardCode, int districtID, int provinceID, String message, List<CartDTO> carts, int paymentMethod, float shippingFee, int shippingMethod, LocalDateTime expectedDeliveryTime) {
+    public CheckoutDTO(String name, String phone, String address, String wardName, String districtName, String provinceName, int wardCode, int districtID, int provinceID, String message, List<CartDTO> carts, int paymentMethod, float shippingFee, int shippingMethod) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -47,7 +47,9 @@ public class CheckoutDTO {
         this.paymentMethod = paymentMethod;
         this.shippingFee = shippingFee;
         this.shippingMethod = shippingMethod;
-        this.expectedDeliveryTime = expectedDeliveryTime;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            expectedDeliveryTime = LocalDateTime.now().plusDays(1).toString();
+        }
     }
 
     public String getName() {
@@ -162,11 +164,7 @@ public class CheckoutDTO {
         this.shippingMethod = shippingMethod;
     }
 
-    public LocalDateTime getExpectedDeliveryTime() {
-        return expectedDeliveryTime;
-    }
-
-    public void setExpectedDeliveryTime(LocalDateTime expectedDeliveryTime) {
+    public void setExpectedDeliveryTime(String expectedDeliveryTime) {
         this.expectedDeliveryTime = expectedDeliveryTime;
     }
 

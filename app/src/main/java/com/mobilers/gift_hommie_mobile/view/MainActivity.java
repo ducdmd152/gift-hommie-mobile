@@ -15,6 +15,7 @@ import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.APIClient;
 import com.mobilers.gift_hommie_mobile.service.APIService;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
 
 import java.util.List;
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        if (!GlobalService.getInstance().isAuthenticated()) {
+//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//            return;
+//        }
 
         ProductAPIService productAPIService = new ProductAPIService();
 

@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GHNApiClient {
-    private static final String BASE_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/";
+    private static final String BASE_URL = "https://dev-online-gateway.ghn.vn/shiip/public-api/";
     private static final String TOKEN = "1f1091d3-06cb-11ee-aaed-4aa85994373f";
     public static IGHNService getClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
