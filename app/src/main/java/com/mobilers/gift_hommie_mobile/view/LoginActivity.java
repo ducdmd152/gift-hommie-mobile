@@ -3,6 +3,7 @@ package com.mobilers.gift_hommie_mobile.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin, btnSignup;
     private GlobalService globalService;
     private Context context;
-
+    private final String REQUIRE = "Require";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
         // Set click listener for login button
         btnLogin.setOnClickListener(view ->{
+            if(!checkInput())
+                return;
             GlobalService.getInstance().setAccount(new Account(
                     edtUser.getText().toString().toLowerCase().trim(),
                     edtPwd.getText().toString()));
@@ -70,4 +73,18 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+    private boolean checkInput() {
+        if (TextUtils.isEmpty(edtUser.getText().toString())) {
+            edtUser.setError(REQUIRE);
+            return  false;
+        }
+
+        if (TextUtils.isEmpty(edtPwd.getText().toString())) {
+            edtPwd.setError(REQUIRE);
+            return  false;
+        }
+
+        return true;
+    }
+
 }

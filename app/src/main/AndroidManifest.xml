@@ -19,9 +19,9 @@
         <activity
             android:name=".view.LoginActivity" />
         <activity
-            android:name=".view.SignUpActivity" />
+            android:name=".view.MainActivity" />
         <activity
-            android:name=".view.ProductListActivity"
+            android:name=".view.SignUpActivity"
             android:exported="false" />
 
         <activity
@@ -41,11 +41,10 @@
             android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.ProductListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
