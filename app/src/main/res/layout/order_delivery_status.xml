@@ -36,7 +36,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"/>
+            android:src="@drawable/order_icon_da_dat_hang"/>
         <TextView
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"
+            android:src="@drawable/order_tich_xanh"
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
@@ -57,7 +57,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"/>
+            android:src="@drawable/order_dang_van_chuyen"/>
         <TextView
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"
+            android:src="@drawable/order_tich_xanh"
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
@@ -78,7 +78,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"/>
+            android:src="@drawable/order_tich_xanh"/>
         <TextView
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/testproduct"
+            android:src="@drawable/order_tich_xanh"
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
 </LinearLayout>

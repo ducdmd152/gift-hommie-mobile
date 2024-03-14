@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -73,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         btnProductList.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
             startActivity(intent);
+        });
+        Button btnOrder = findViewById(R.id.btnOrder);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
         });
 
     }
