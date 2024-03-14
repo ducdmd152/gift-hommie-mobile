@@ -25,6 +25,8 @@ import com.mobilers.gift_hommie_mobile.model.auth.Account;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.checkout.AddressItem;
 import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
+import com.mobilers.gift_hommie_mobile.model.checkout.ShippingInfoDTO;
+import com.mobilers.gift_hommie_mobile.model.checkout.ShippingResponseDTO;
 import com.mobilers.gift_hommie_mobile.model.ghn.DistrictDTO;
 import com.mobilers.gift_hommie_mobile.model.ghn.DistrictResponse;
 import com.mobilers.gift_hommie_mobile.model.ghn.ProvinceDTO;
@@ -252,8 +254,31 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 AddressItem selectedAddress = (AddressItem) adapterView.getItemAtPosition(position);
+                Log.d("Ward " + position, selectedAddress.getName() + " " + selectedAddress.getCode());
                 checkoutDTO.setWardCode(selectedAddress.getCode());
                 checkoutDTO.setWardName(selectedAddress.getName());
+                Log.d("After Ward " + position, selectedAddress.getName() + " " + checkoutDTO.getWardCode());
+
+                GHNService.previewOrder(checkoutDTO, new Callback<ShippingResponseDTO>() {
+                    @Override
+                    public void onResponse(Call<ShippingResponseDTO> call, Response<ShippingResponseDTO> response) {
+                        if (response.isSuccessful()) {
+                            ShippingInfoDTO res = response.body().getData();
+                            checkoutDTO.setShippingFee(res.getTotal_fee());
+                            updateCheckoutSummary();
+                        }
+                        else {
+                            checkoutDTO.setShippingFee(20000);
+                            updateCheckoutSummary();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ShippingResponseDTO> call, Throwable t) {
+                        checkoutDTO.setShippingFee(20000);
+                        updateCheckoutSummary();
+                    }
+                });
             }
 
             @Override

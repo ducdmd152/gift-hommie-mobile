@@ -19,7 +19,7 @@ public class ShippingRequestDTO {
     private String to_district_id;
     private String to_province_id;
 
-    private float cod_amount;
+    private long cod_amount;
     private String content = "HommieStore | Quà tặng đến bạn.";
     private int weight = 200;
     private int length = 10;
@@ -27,9 +27,9 @@ public class ShippingRequestDTO {
     private int height = 10;
     private int pick_station_id = 1444;
     private Object deliver_station_id = null;
-    private float insurance_value;
+    private long insurance_value;
     private int service_id = 0;
-    private int service_type_id;
+    private int service_type_id = 2;
     private Object coupon = null;
     private Object pick_shift = null;
     private long pickup_time = 1665272576;
@@ -46,10 +46,10 @@ public class ShippingRequestDTO {
         int shippingMethod = 1;
         // Calculate cod_amount
         this.cod_amount = (shippingMethod == 1) ?
-                checkoutDTO.getTotal() : 0;
+                (long) checkoutDTO.getTotal() : 0;
 
         // Calculate insurance_value
-        this.insurance_value = checkoutDTO.getProductCost();
+        this.insurance_value = (long) checkoutDTO.getProductCost();
     }
 
     public int getPayment_type_id() {
@@ -180,11 +180,11 @@ public class ShippingRequestDTO {
         this.to_province_id = to_province_id;
     }
 
-    public float getCod_amount() {
+    public long getCod_amount() {
         return cod_amount;
     }
 
-    public void setCod_amount(float cod_amount) {
+    public void setCod_amount(long cod_amount) {
         this.cod_amount = cod_amount;
     }
 
@@ -244,11 +244,11 @@ public class ShippingRequestDTO {
         this.deliver_station_id = deliver_station_id;
     }
 
-    public float getInsurance_value() {
+    public long getInsurance_value() {
         return insurance_value;
     }
 
-    public void setInsurance_value(float insurance_value) {
+    public void setInsurance_value(long insurance_value) {
         this.insurance_value = insurance_value;
     }
 
