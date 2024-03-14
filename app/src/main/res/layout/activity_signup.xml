@@ -32,11 +32,11 @@
                 android:textSize="35sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textColor="#9C27B0"/>
+                android:textColor="@color/black"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/name"
+                android:id="@+id/etName"
                 android:drawablePadding="8dp"
                 android:hint="Họ và tên"
                 android:padding="8dp"
@@ -46,7 +46,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/email"
+                android:id="@+id/etEmail"
                 android:drawablePadding="8dp"
                 android:hint="Email"
                 android:padding="8dp"
@@ -56,7 +56,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/phone"
+                android:id="@+id/etPhone"
                 android:drawablePadding="8dp"
                 android:hint="Số điện thoại"
                 android:padding="8dp"
@@ -66,7 +66,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/username"
+                android:id="@+id/etUsername"
                 android:drawablePadding="8dp"
                 android:hint="Username"
                 android:padding="8dp"
@@ -77,7 +77,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/password"
+                android:id="@+id/etPassword"
                 android:drawablePadding="8dp"
                 android:hint="Password"
                 android:padding="8dp"
@@ -88,7 +88,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/confirmpassword"
+                android:id="@+id/etConfirmpassword"
                 android:drawablePadding="8dp"
                 android:hint="Confirm Password"
                 android:padding="8dp"
@@ -100,11 +100,11 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/loginButton"
+                android:id="@+id/btnSignUp"
                 android:text="Sign Up"
                 android:textSize="15sp"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#9C27B0"
+                android:backgroundTint="@color/black"
                 app:cornerRadius = "20dp"/>
 
         </LinearLayout>
@@ -115,10 +115,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Have account? Sign In Now"
+        android:text="Have account? Login In Now"
         android:textSize="14sp"
         android:textAlignment="center"
-        android:id="@+id/signinText"
+        android:id="@+id/btnLogin"
         android:textColor="#E0D2E3"
         android:layout_marginBottom="20dp"/>
 

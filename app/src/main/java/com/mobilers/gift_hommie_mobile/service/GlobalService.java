@@ -10,6 +10,8 @@ public class GlobalService {
     private Product product;
     private Account account;
     private CheckoutDTO checkoutDTO;
+    private boolean isAuthenticated;
+
     private GlobalService() {}
 
     public static synchronized GlobalService getInstance() {
@@ -43,5 +45,13 @@ public class GlobalService {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public boolean isAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        isAuthenticated = authenticated;
     }
 }
