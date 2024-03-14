@@ -2,7 +2,7 @@ package com.mobilers.gift_hommie_mobile.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.text.TextUtils;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobilers.gift_hommie_mobile.CartActivity;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
+import com.mobilers.gift_hommie_mobile.model.cart.CartListResponseDTO;
+import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
 
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     private Context context;
     private List<CartDTO> list;
     private OnItemClickListener listener;
+
     public CartListAdapter(Context context, List<CartDTO> cartList) {
         this.context = context;
         this.list = cartList;
@@ -53,6 +57,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
@@ -61,7 +66,9 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         private CartListAdapter adapter;
         private CartDTO item;
         private TextView tvName, tvPrice, tvQuantity;
-        private ImageView ivMinus, ivPlus, ivDelete;
+        private ImageView ivMinus, ivPlus, ivDelete, ivProduct;
+        CartAPIService cartAPIService = new CartAPIService();
+
         //        private ImageView
         public CartListHolder(CartListAdapter adapter, @NonNull View itemView) {
             super(itemView);
@@ -72,6 +79,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             ivMinus = itemView.findViewById(R.id.ivMinus);
             ivPlus = itemView.findViewById(R.id.ivPlus);
             ivDelete = itemView.findViewById(R.id.ivDelete);
+            ivProduct = itemView.findViewById(R.id.ivProduct);
         }
 
         public void bind(CartDTO item, final OnItemClickListener listener) {
@@ -79,11 +87,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             tvName.setText(item.getProduct().getName());
             tvQuantity.setText("" + item.getQuantity());
             tvPrice.setText("" + item.getTotal());
+
             ivMinus.setOnClickListener(v -> {
                 if (item.getQuantity() == 1) {
                     confirmToDelete();
-                }
-                else {
+                } else {
                     item.setQuantity(item.getQuantity() - 1);
                     adapter.notifyDataSetChanged();
                 }
@@ -91,8 +99,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             ivPlus.setOnClickListener(v -> {
                 if (item.getQuantity() == item.getProduct().getAvailable()) {
                     Toast.makeText(adapter.context, "Số lượng sản phẩm " + item.getProduct().getName() + " đã được thêm hết vào danh sách!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     item.setQuantity(item.getQuantity() + 1);
                     adapter.notifyDataSetChanged();
                 }
@@ -128,6 +135,19 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    cartAPIService.delete(item.getId(), new Callback<CartDTO>() {
+                        @Override
+                        public void onResponse(Call<CartDTO> call, Response<CartDTO> response) {
+                            if (response.isSuccessful()) {
+                            } else {
+                                Toast.makeText(adapter.context, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<CartDTO> call, Throwable t) {
+//                            Toast.makeText(adapter.context, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     adapter.list.remove(item);
                     Toast.makeText(adapter.context, "Đã xóa " + item.getProduct().getName() + " khỏi danh sách!", Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();

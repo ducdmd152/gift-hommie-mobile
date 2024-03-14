@@ -8,6 +8,7 @@ import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.DELETE;
 
 public interface ICartAPIService {
     @GET("{endpoint}")
@@ -15,4 +16,7 @@ public interface ICartAPIService {
 
     @GET("{endpoint}/{id}")
     Call<CartDTO> get(@Path(value = "endpoint", encoded = true) String endpoint, @Path("id") Object id);
+
+    @DELETE("{endpoint}/{id}")
+    Call<CartDTO> delete(@Path(value = "endpoint", encoded = true) String endpoint, @Path("id") Object id);
 }

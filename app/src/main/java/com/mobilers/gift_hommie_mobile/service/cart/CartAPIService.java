@@ -29,4 +29,9 @@ public class CartAPIService {
         Call<CartDTO> call = apiService.get(endpoint, id);
         call.enqueue(callback);
     }
+
+    public void delete(int id, Callback<CartDTO> callback) {
+        Call<CartDTO> call = apiService.delete(endpoint, id);
+        call.enqueue(callback);
+    }
 }
