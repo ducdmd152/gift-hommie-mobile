@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.APIClient;
 import com.mobilers.gift_hommie_mobile.service.APIService;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
 
 import java.util.List;
@@ -28,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        if (!GlobalService.getInstance().isAuthenticated()) {
+//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//            return;
+//        }
 
         ProductAPIService productAPIService = new ProductAPIService();
 
@@ -69,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
             startActivity(intent);
         });
+        Button btnProductList = findViewById(R.id.btnProductList);
+        btnProductList.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
+            startActivity(intent);
+        });
+        Button btnOrder = findViewById(R.id.btnOrder);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

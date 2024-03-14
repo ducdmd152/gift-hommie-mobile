@@ -10,20 +10,29 @@
         android:layout_marginTop="20dp">
 
         <TextView
+            android:id="@+id/order_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đã cập nhật: 28/02/2022"
             android:layout_marginStart="5dp"/>
 
         <TextView
+            android:id="@+id/order_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="SHOP ĐANG CHUẨN BỊ HÀNG"
             android:gravity="right"
             android:layout_marginEnd="5dp"/>
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:visibility="gone"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/order_recycleview_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -33,12 +42,14 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
         <TextView
+            android:id="@+id/order_ship"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phí ship: 30000d"
             android:layout_marginTop="25dp"
             android:layout_marginStart="30dp"/>
         <TextView
+            android:id="@+id/order_tatol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tổng đơn hàng :98700d"
@@ -65,23 +76,16 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/detail"
+                    android:id="@+id/oeder_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Chi tiết"
                     android:textColor="@android:color/black"
                     android:background="@drawable/order_custom_buttom_order_managemet"/>
 
-                <Button
-                    android:id="@+id/wait"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="chờ"
-                    android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet" />
 
                 <Button
-                    android:id="@+id/cancel"
+                    android:id="@+id/oeder_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="hủy"
@@ -89,7 +93,7 @@
                     android:background="@drawable/order_custom_buttom_order_managemet" />
 
                 <Button
-                    android:id="@+id/repurchase"
+                    android:id="@+id/oeder_repurchase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="mua lại"
@@ -97,7 +101,7 @@
                     android:background="@drawable/order_custom_buttom_order_managemet" />
 
                 <Button
-                    android:id="@+id/Evaluate"
+                    android:id="@+id/oeder_Evaluate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="đánh giá"
@@ -105,7 +109,7 @@
                     android:background="@drawable/order_custom_buttom_order_managemet" />
 
                 <Button
-                    android:id="@+id/evaluated"
+                    android:id="@+id/oeder_evaluated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="đã đánh giá"
