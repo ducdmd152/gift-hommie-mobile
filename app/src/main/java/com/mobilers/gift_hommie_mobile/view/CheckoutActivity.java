@@ -21,9 +21,12 @@ import android.widget.Toast;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.AddressItemAdapter;
 import com.mobilers.gift_hommie_mobile.adapter.CheckoutListAdapter;
+import com.mobilers.gift_hommie_mobile.model.auth.Account;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.checkout.AddressItem;
 import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
+import com.mobilers.gift_hommie_mobile.model.checkout.ShippingInfoDTO;
+import com.mobilers.gift_hommie_mobile.model.checkout.ShippingResponseDTO;
 import com.mobilers.gift_hommie_mobile.model.ghn.DistrictDTO;
 import com.mobilers.gift_hommie_mobile.model.ghn.DistrictResponse;
 import com.mobilers.gift_hommie_mobile.model.ghn.ProvinceDTO;
@@ -33,6 +36,7 @@ import com.mobilers.gift_hommie_mobile.model.ghn.WardResponse;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
+import com.mobilers.gift_hommie_mobile.service.checkout.CheckoutAPIService;
 import com.mobilers.gift_hommie_mobile.service.ghn.GHNApiClient;
 import com.mobilers.gift_hommie_mobile.service.ghn.GHNService;
 import com.mobilers.gift_hommie_mobile.util.Util;
@@ -53,6 +57,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView tvBtnApplyVoucher, btnCheckout, tvProductFee, tvShipFee, tvTotal;
     private Spinner spProvince, spDistrict, spWard;
     private RecyclerView rvCheckoutList;
+    private CheckoutAPIService apiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +74,7 @@ public class CheckoutActivity extends AppCompatActivity {
         globalService = GlobalService.getInstance();
         checkoutDTO = new CheckoutDTO();
         globalService.setCheckoutDTO(checkoutDTO);
+        apiService = new CheckoutAPIService();
     }
     private void binding() {
         etPhone = findViewById(R.id.etPhone);
@@ -195,8 +201,6 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
 
-
-
         spDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -250,8 +254,31 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 AddressItem selectedAddress = (AddressItem) adapterView.getItemAtPosition(position);
+                Log.d("Ward " + position, selectedAddress.getName() + " " + selectedAddress.getCode());
                 checkoutDTO.setWardCode(selectedAddress.getCode());
                 checkoutDTO.setWardName(selectedAddress.getName());
+                Log.d("After Ward " + position, selectedAddress.getName() + " " + checkoutDTO.getWardCode());
+
+                GHNService.previewOrder(checkoutDTO, new Callback<ShippingResponseDTO>() {
+                    @Override
+                    public void onResponse(Call<ShippingResponseDTO> call, Response<ShippingResponseDTO> response) {
+                        if (response.isSuccessful()) {
+                            ShippingInfoDTO res = response.body().getData();
+                            checkoutDTO.setShippingFee(res.getTotal_fee());
+                            updateCheckoutSummary();
+                        }
+                        else {
+                            checkoutDTO.setShippingFee(20000);
+                            updateCheckoutSummary();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ShippingResponseDTO> call, Throwable t) {
+                        checkoutDTO.setShippingFee(20000);
+                        updateCheckoutSummary();
+                    }
+                });
             }
 
             @Override
@@ -284,7 +311,7 @@ public class CheckoutActivity extends AppCompatActivity {
         });
 
         btnCheckout.setOnClickListener(v -> {
-//            checkoutFormValidation();
+            if(!checkoutFormValidation()) return;
 
             String name = etName.getText().toString();
             String phone = etPhone.getText().toString();
@@ -296,36 +323,56 @@ public class CheckoutActivity extends AppCompatActivity {
             checkoutDTO.setPhone(phone);
             checkoutDTO.setAddress(address);
             checkoutDTO.setMessage(message);
-            Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
-            startActivity(intent);
+
+
+            apiService.checkout(checkoutDTO, new Callback<CheckoutDTO>() {
+                @Override
+                public void onResponse(Call<CheckoutDTO> call, Response<CheckoutDTO> response) {
+                    if (response.isSuccessful()) {
+                        Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
+                        startActivity(intent);
+                    }
+
+                    else {
+                        Toast.makeText(context, "Checkout thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CheckoutDTO> call, Throwable t) {
+                    Toast.makeText(context, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 
-    private void checkoutFormValidation() {
+    private boolean checkoutFormValidation() {
         String name = etName.getText().toString();
         String phone = etPhone.getText().toString();
         String address = etAddress.getText().toString();
         String message = etMessage.getText().toString();
         if (name.trim().length() < 4) {
             Toast.makeText(context, "Vui lòng nhập tên người nhận hợp lệ, ít nhất 4 kí tự!", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         if (phone.isEmpty()) {
             Toast.makeText(context, "Vui lòng nhập số điện thoại!", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         if (!phone.matches("^[+]?[0-9]{10,13}$")) {
             Toast.makeText(context, "Vui lòng nhập số điện thoại hợp lệ!", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         if (checkoutDTO.getProvinceID() == 0 || checkoutDTO.getDistrictID() == 0 || checkoutDTO.getWardCode() == 0) {
             Toast.makeText(context, "Vui lòng chọn đầy đủ thông tin địa chỉ!", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         if (address.isEmpty()) {
             Toast.makeText(context, "Vui lòng nhập địa chỉ cụ thể!", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
+        return true;
     }
 
     private void updateCheckoutSummary() {

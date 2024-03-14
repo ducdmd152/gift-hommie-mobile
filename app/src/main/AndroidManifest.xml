@@ -19,7 +19,7 @@
         <activity
             android:name=".view.LoginActivity" />
         <activity
-            android:name=".view.MainActivity" />
+            android:name=".view.ProductListActivity" />
         <activity
             android:name=".view.SignUpActivity"
             android:exported="false" />
@@ -41,7 +41,7 @@
             android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProductListActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
