@@ -36,9 +36,9 @@ import java.util.List;
             if (item == null){
                 return;
             }
-            Picasso.get().load(item.getImg()).into(holder.imgProduct);
-            holder.name.setText(item.getName());
-            holder.price.setText("Giá: "+String.valueOf(item.getPrice()));
+            Picasso.get().load(item.getProduct().getAvatar()).into(holder.avatar);
+            holder.name.setText(item.getProduct().getName());
+            holder.price.setText("Giá: "+String.valueOf(item.getPrice())+"đ");
             holder.quanlity.setText("Số luọng: "+String.valueOf(item.getQuantity()));
         }
 
@@ -51,12 +51,12 @@ import java.util.List;
         }
 
         public class OrderDetailViewHolder extends RecyclerView.ViewHolder{
-            private ImageView imgProduct;
+            private ImageView avatar;
             private TextView name, price, quanlity;
             public OrderDetailViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-                imgProduct = itemView.findViewById(R.id.order_imgage);
+                avatar = itemView.findViewById(R.id.order_imgage);
                 name = itemView.findViewById(R.id.order_name);
                 price = itemView.findViewById(R.id.order_price);
                 quanlity = itemView.findViewById(R.id.order_quality);

@@ -2,12 +2,12 @@ package com.mobilers.gift_hommie_mobile.model.order;
 
 import java.util.List;
 
-public class OrderPakageDTO {
+public class OrderPackageDTO {
     private List<OrderItemDTO> orderDetails;
     private String createTime;
     private String status;
 
-    public OrderPakageDTO(List<OrderItemDTO> orderDetails, String createTime, String status) {
+    public OrderPackageDTO(List<OrderItemDTO> orderDetails, String createTime, String status) {
         this.orderDetails = orderDetails;
         this.createTime = createTime;
         this.status = status;

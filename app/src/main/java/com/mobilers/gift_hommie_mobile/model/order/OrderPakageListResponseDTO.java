@@ -1,17 +1,15 @@
 package com.mobilers.gift_hommie_mobile.model.order;
 
-import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
-
 import java.util.List;
 
 public class OrderPakageListResponseDTO {
-    private List<OrderPakageDTO> content;
+    private List<OrderPackageDTO> content;
 
-    public List<OrderPakageDTO> getContent() {
+    public List<OrderPackageDTO> getContent() {
         return content;
     }
 
-    public void setContent(List<OrderPakageDTO> content) {
+    public void setContent(List<OrderPackageDTO> content) {
         this.content = content;
     }
 }
