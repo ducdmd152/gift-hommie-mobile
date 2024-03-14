@@ -1,28 +1,16 @@
 package com.mobilers.gift_hommie_mobile.model.order;
 
+import com.mobilers.gift_hommie_mobile.model.product.Product;
+
 public class OrderItemDTO {
-    private String name;
     private int quantity;
     private int price;
-    private String avatar;
+    Product product;
 
-
-
-    public OrderItemDTO(String name, int quantity, int price, String img) {
-        this.name = name;
+    public OrderItemDTO(int quantity, int price, Product product) {
         this.quantity = quantity;
         this.price = price;
-        this.avatar = img;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -41,11 +29,11 @@ public class OrderItemDTO {
         this.price = price;
     }
 
-    public String getImg() {
-        return avatar;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setImg(String img) {
-        this.avatar = img;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
