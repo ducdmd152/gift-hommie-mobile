@@ -20,6 +20,7 @@ public class User_Page_Activity extends AppCompatActivity {
         Button btnOrder = findViewById(R.id.btnOrder);
         Button btnChat = findViewById(R.id.btnChat);
         Button btnAddress = findViewById(R.id.btnAddress);
+        Button btnLogout = findViewById(R.id.btnLogout);
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,22 +29,22 @@ public class User_Page_Activity extends AppCompatActivity {
             }
         });
 
-//        btnOrder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(User_Page_Activity.this, CheckoutActivity.class); ---> Check lại intent đúng chưa
-//                startActivity(intent);
-//            }
-//        });
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(User_Page_Activity.this, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-//        btnChat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                Intent intent = new Intent(User_Page_Activity.this, ChatActivity.class); ----> Delete this when have Chat
 //                startActivity(intent);
-//            }
-//        });
+            }
+        });
 
         btnAddress.setOnClickListener(new View.OnClickListener() {
             @Override

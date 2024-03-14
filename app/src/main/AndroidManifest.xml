@@ -42,6 +42,12 @@
             android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
+            android:name=".view.User_Page_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ProductListActivity"
             android:exported="true">
             <intent-filter>

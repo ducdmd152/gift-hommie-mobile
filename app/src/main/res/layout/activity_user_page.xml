@@ -10,7 +10,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:shape="oval"
-        android:src="@drawable/order_icon_avatar" />
+        android:src="@drawable/order_icon_avatar"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,32 +35,50 @@
             android:text="Name@gmai.com" />
         <Button
             android:id="@+id/btnCart"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"
             android:layout_marginTop="20dp"
-            android:text="Giỏ hàng của tôi" />
+            android:text="Giỏ hàng của tôi"
+            />
         <Button
             android:id="@+id/btnOrder"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"
             android:text="Đơn hàng của tôi" />
         <Button
             android:id="@+id/btnChat"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
-            android:text="Chat với cửa hàng" />
+            android:text="Chat với cửa hàng"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"/>
         <Button
             android:id="@+id/btnAddress"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            android:text="Địa chỉ cửa hàng"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"/>
+        <Button
+            android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
-            android:text="Địa chỉ cửa hàng" />
+            android:text="Đăng xuất"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"/>
 
 
     </LinearLayout>

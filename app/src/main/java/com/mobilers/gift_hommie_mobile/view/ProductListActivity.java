@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,13 @@ public class ProductListActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        ImageView ivMenu = findViewById(R.id.ivMenu);
+        ivMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductListActivity.this, User_Page_Activity.class);
+            startActivity(intent);
+            return;
+        });
 
         rvProductList = findViewById(R.id.rvProductList);
         rvProductList.setLayoutManager(new LinearLayoutManager(this));
