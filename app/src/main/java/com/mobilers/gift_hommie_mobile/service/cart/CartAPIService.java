@@ -16,6 +16,7 @@ public class CartAPIService {
     public CartAPIService() {
         this.apiService = APIClient.getClient().create(ICartAPIService.class);
     }
+
     public CartAPIService(String endpoint) {
         this.apiService = APIClient.getClient().create(ICartAPIService.class);
         this.endpoint = endpoint;
@@ -31,10 +32,12 @@ public class CartAPIService {
         call.enqueue(callback);
     }
 
-        public void addToCart(AddToCartDTO model, Callback<CartDTO> callback) {
+    public void addToCart(AddToCartDTO model, Callback<CartDTO> callback) {
         Call<CartDTO> call = apiService.create(endpoint, model);
-    public void delete(int id, Callback<CartDTO> callback) {
-        Call<CartDTO> call = apiService.delete(endpoint, id);
-        call.enqueue(callback);
     }
-}
+        public void delete ( int id, Callback<CartDTO > callback){
+            Call<CartDTO> call = apiService.delete(endpoint, id);
+            call.enqueue(callback);
+        }
+    }
+
