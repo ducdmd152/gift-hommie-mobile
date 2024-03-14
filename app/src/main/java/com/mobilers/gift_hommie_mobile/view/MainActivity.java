@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (!GlobalService.getInstance().isAuthenticated()) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
+//        if (!GlobalService.getInstance().isAuthenticated()) {
+//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//            return;
+//        }
 
         ProductAPIService productAPIService = new ProductAPIService();
 
