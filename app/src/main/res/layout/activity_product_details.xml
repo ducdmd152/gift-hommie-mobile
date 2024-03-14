@@ -8,17 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Avatar ImageView -->
         <ImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/default_avatar"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Product Name TextView -->
         <TextView
             android:id="@+id/tvProductName"
             android:layout_width="0dp"
@@ -31,7 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Price TextView -->
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="196dp"
@@ -42,19 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvProductName" />
 
-        <!-- Add to Cart Button -->
 
-        <!-- Quantity TextView -->
-
-        <Button
-            android:id="@+id/btnAddToCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:text="Add to Cart"
-            app:layout_constraintStart_toEndOf="@id/tvPrice"
-            app:layout_constraintTop_toTopOf="@id/tvPrice" />
 
         <TextView
             android:id="@+id/tvQuantity"
@@ -66,10 +51,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
-        <!-- Buy Now Button -->
-
-        <!-- Description TextView -->
-
         <Button
             android:id="@+id/btnBuyNow"
             android:layout_width="wrap_content"
@@ -80,7 +61,16 @@
             app:layout_constraintStart_toEndOf="@id/tvQuantity"
             app:layout_constraintTop_toTopOf="@id/tvQuantity" />
 
-        <!-- Product Description TextView -->
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Add to Cart"
+            app:layout_constraintStart_toEndOf="@id/tvPrice"
+            app:layout_constraintTop_toTopOf="@id/tvPrice" />
+
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
@@ -105,7 +95,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Reviews TextView -->
         <TextView
             android:id="@+id/tvReviews"
             android:layout_width="0dp"
@@ -118,7 +107,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- RecyclerView for Reviews -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvReviews"
             android:layout_width="0dp"
