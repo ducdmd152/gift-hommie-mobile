@@ -1,5 +1,6 @@
 package com.mobilers.gift_hommie_mobile.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.ProductListAdapter;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
 
 import retrofit2.Call;
@@ -34,6 +36,13 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_layout);
+
+        if (!GlobalService.getInstance().isAuthenticated()) {
+            Intent intent = new Intent(ProductListActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         rvProductList = findViewById(R.id.rvProductList);
         rvProductList.setLayoutManager(new LinearLayoutManager(this));
@@ -101,5 +110,9 @@ public class ProductListActivity extends AppCompatActivity {
         if (productListAdapter != null) {
             productListAdapter.filter(keyword);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
