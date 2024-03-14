@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.mobilers.gift_hommie_mobile.adapter.CartListAdapter;
@@ -29,6 +31,7 @@ import retrofit2.Response;
 public class CartActivity extends AppCompatActivity {
     private Context context;
     private GlobalService globalService;
+    private CheckoutDTO checkoutDTO;
     private CartListAdapter cartListAdapter;
     private RecyclerView rvItemCart;
     private List<CartDTO> list;
@@ -41,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
 
         initService();
         binding();
+        initData();
 
         list = new ArrayList<>();
         cartListAdapter = new CartListAdapter(context, list);
@@ -79,13 +83,34 @@ public class CartActivity extends AppCompatActivity {
                 //updateCheckoutSummary();
             }
         });
+        cartListAdapter.setOnItemClickListener(new CartListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                CartDTO item = list.get(position);
+                Log.d("Index", "" + position);
+//                View currentView = rvItemCart.getChildAt(position);
+                if (item == null) return;
+                if (globalService.getCheckoutDTO().getCarts().contains(item)) {
+                    globalService.getCheckoutDTO().getCarts().remove(item);
+//                    currentView.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    globalService.getCheckoutDTO().getCarts().add(item);
+//                    currentView.setBackgroundColor(Color.CYAN);
+                }
+                cartListAdapter.notifyItemChanged(position);
+            }
+        });
         //events();
     }
 
     private void initService() {
         globalService = GlobalService.getInstance();
-        //checkoutDTO = new CheckoutDTO();
-        //globalService.setCheckoutDTO(checkoutDTO);
+        checkoutDTO = new CheckoutDTO();
+        checkoutDTO.setCarts(new ArrayList<>());
+        globalService.setCheckoutDTO(checkoutDTO);
+    }
+
+    private void initData() {
     }
 
     private void binding() {
