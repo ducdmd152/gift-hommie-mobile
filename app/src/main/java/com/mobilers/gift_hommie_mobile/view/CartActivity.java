@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobilers.gift_hommie_mobile.R;
@@ -42,6 +46,12 @@ public class CartActivity extends AppCompatActivity {
         initService();
         binding();
         initData();
+        TextView btnCheckout = findViewById(R.id.btnCheckout);
+        btnCheckout.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+            startActivity(intent);
+            return;
+        });
 
         list = new ArrayList<>();
         cartListAdapter = new CartListAdapter(context, list);

@@ -72,8 +72,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void initService() {
         globalService = GlobalService.getInstance();
-        checkoutDTO = new CheckoutDTO();
-        globalService.setCheckoutDTO(checkoutDTO);
+        checkoutDTO = globalService.getCheckoutDTO();
         apiService = new CheckoutAPIService();
     }
     private void binding() {
