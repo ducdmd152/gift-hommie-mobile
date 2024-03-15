@@ -18,6 +18,7 @@ import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         private CartListAdapter adapter;
         private CartDTO item;
         private TextView tvName, tvPrice, tvQuantity;
-        private ImageView ivMinus, ivPlus, ivDelete, ivProduct, ivRetangle;
+        private ImageView ivMinus, ivPlus, ivDelete, ivProduct, ivRetangle, ivAvatar;
         CartAPIService cartAPIService = new CartAPIService();
 
         //        private ImageView
@@ -85,8 +86,9 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             ivMinus = itemView.findViewById(R.id.ivMinus);
             ivPlus = itemView.findViewById(R.id.ivPlus);
             ivDelete = itemView.findViewById(R.id.ivDelete);
-            ivProduct = itemView.findViewById(R.id.ivProduct);
+//            ivProduct = itemView.findViewById(R.id.ivProduct);
             ivRetangle = itemView.findViewById(R.id.ivRetangle);
+            ivAvatar = itemView.findViewById(R.id.ivAvatar);
         }
 
         public void bind(CartDTO item, final OnItemClickListener listener) {
@@ -140,12 +142,12 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             ivDelete.setOnClickListener(v -> {
                 confirmToDelete();
             });
-//            try {
-//                Picasso.get().load(data.getImgSrc()).into(holder.ivAvatar);
-//            }
-//            catch (Exception ex) {
-//                holder.ivAvatar.setImageResource(R.drawable.no_img);
-//            }
+            try {
+                Picasso.get().load(item.getProduct().getAvatar()).into(ivAvatar);
+            }
+            catch (Exception ex) {
+                ivAvatar.setImageResource(R.drawable.checkout_image_item);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

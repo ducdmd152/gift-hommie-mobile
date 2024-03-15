@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class CheckoutListAdapter extends RecyclerView.Adapter<CheckoutListAdapte
         private CheckoutListAdapter adapter;
         private CartDTO item;
         private TextView tvName, tvPrice, tvQuantity;
-        private ImageView ivMinus, ivPlus, ivDelete;
+        private ImageView ivMinus, ivPlus, ivDelete, ivAvatar;
 //        private ImageView
         public CheckoutListHolder(CheckoutListAdapter adapter, @NonNull View itemView) {
             super(itemView);
@@ -72,6 +73,7 @@ public class CheckoutListAdapter extends RecyclerView.Adapter<CheckoutListAdapte
             ivMinus = itemView.findViewById(R.id.ivMinus);
             ivPlus = itemView.findViewById(R.id.ivPlus);
             ivDelete = itemView.findViewById(R.id.ivDelete);
+            ivAvatar = itemView.findViewById(R.id.ivAvatar);
         }
 
         public void bind(CartDTO item, final OnItemClickListener listener) {
@@ -100,12 +102,12 @@ public class CheckoutListAdapter extends RecyclerView.Adapter<CheckoutListAdapte
             ivDelete.setOnClickListener(v -> {
                 confirmToDelete();
             });
-//            try {
-//                Picasso.get().load(data.getImgSrc()).into(holder.ivAvatar);
-//            }
-//            catch (Exception ex) {
-//                holder.ivAvatar.setImageResource(R.drawable.no_img);
-//            }
+            try {
+                Picasso.get().load(item.getProduct().getAvatar()).into(ivAvatar);
+            }
+            catch (Exception ex) {
+                ivAvatar.setImageResource(R.drawable.checkout_image_item);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
