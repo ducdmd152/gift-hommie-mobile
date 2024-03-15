@@ -22,20 +22,21 @@ public class MapActivity  extends AppCompatActivity {
         EditText editTextSource = findViewById(R.id.source);
         EditText editTextAddress = findViewById(R.id.address);
         Button button = findViewById(R.id.btnSubmit);
+        String ADDRESS = "FPT University HCMC";
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String source = editTextSource.getText().toString();
                 String adsress = editTextAddress.getText().toString();
-                if(source.equals("") && adsress.equals("")){
-                    Toast.makeText(getApplicationContext(), "Nhập địa chỉ ",
+                if(source.equals("")){
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập địa chỉ1",
                     Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Uri uri = Uri.parse("https://www.google.com/maps/dir/" + source + "/" +adsress);
+                    Uri uri = Uri.parse("https://www.google.com/maps/dir/" + source + "/" + ADDRESS);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.setPackage("com.google.android.apps.maps");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.setPackage("com.google.android.apps.maps");
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
             }

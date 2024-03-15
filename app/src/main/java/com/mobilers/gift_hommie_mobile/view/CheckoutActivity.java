@@ -93,6 +93,12 @@ public class CheckoutActivity extends AppCompatActivity {
         tvShipFee = findViewById(R.id.tvShipFee);
         tvTotal = findViewById(R.id.tvTotal);
         btnCheckout = findViewById(R.id.btnCheckout);
+        ImageView ivMenu = findViewById(R.id.ivMenu);
+        ivMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(CheckoutActivity.this, User_Page_Activity.class);
+            startActivity(intent);
+            return;
+        });
     }
 
     private void initData() {
@@ -156,7 +162,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(context, "Load quan huyen", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Load quan huyen", Toast.LENGTH_SHORT).show();
                 GHNService.getDistricts(checkoutDTO.getProvinceID(), new Callback<DistrictResponse>() {
                     @Override
                     public void onResponse(Call<DistrictResponse> call, Response<DistrictResponse> response) {
@@ -317,45 +323,8 @@ public class CheckoutActivity extends AppCompatActivity {
             checkoutDTO.setAddress(address);
             checkoutDTO.setMessage(message);
 
-
-            apiService.checkout(checkoutDTO, new Callback<CheckoutDTO>() {
-                @Override
-                public void onResponse(Call<CheckoutDTO> call, Response<CheckoutDTO> response) {
-                    if (response.isSuccessful()) {
-                        GHNService.createOrder(checkoutDTO, new Callback<ShippingResponseDTO>() {
-                            @Override
-                            public void onResponse(Call<ShippingResponseDTO> call, Response<ShippingResponseDTO> response) {
-                                if (response.isSuccessful()) {
-//                                    ShippingInfoDTO res = response.body().getData();
-//                                    checkoutDTO.setShippingFee(res.getTotal_fee());
-//                                    updateCheckoutSummary();
-                                }
-                                else {
-//                            checkoutDTO.setShippingFee(20000);
-//                            updateCheckoutSummary();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ShippingResponseDTO> call, Throwable t) {
-//                        checkoutDTO.setShippingFee(20000);
-//                        updateCheckoutSummary();
-                            }
-                        });
-                        Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
-                        startActivity(intent);
-                    }
-
-                    else {
-                        Toast.makeText(context, "Checkout thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<CheckoutDTO> call, Throwable t) {
-                    Toast.makeText(context, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
-                }
-            });
+            Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
+            startActivity(intent);
 
         });
     }
