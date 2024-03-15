@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">gift-hommie-mobile</string>
+
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="add_to_cart_string">Add to cart</string>
+    <string name="the_aluminium_case_is_lightweight_and_made_from_100_percent_recycled_aerospace_grade_alloy__string">The aluminium case is lightweight and madefrom 100 percent recycled aerospacegrade alloy.</string>
+    <string name="details_ek2_string">Details</string>
+    <string name="review_string">Review</string>
+    <string name="nectarine_string">Nectarine</string>
+    <string name="chalk_pink_string">Chalk Pink</string>
+    <string name="eucalyptus_string">Eucalyptus</string>
+    <string name="colors_ek2_string">Colors</string>
+    <string name="apple_watch_series_7_string">Apple Watch Series 7</string>
+    <string name="___with_solo_loop___string">( With solo loop )</string>
+    <string name="__799_string">$799</string>
+    <string name="_09_41_string">09:41</string>
+
+
 </resources>

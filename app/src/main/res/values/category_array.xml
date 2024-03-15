@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>Tất Cả</item>
+        <item>Cốc Sứ</item>
+        <item>Đồ Chơi</item>
+        <item>Đồng Hồ</item>
+        <item>Đèn Ngủ</item>
+        <item>Khung Ảnh</item>
+        <item>Hộp Bút</item>
+        <item>Cầu tuyết</item>
+
+    </string-array>
+</resources>

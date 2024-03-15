@@ -2,4 +2,32 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Green">#94FF98</color>
+    <color name="orange">#FFB03B</color>
+
+    <color name="chat_test">#9C27B0</color>
+    <color name="chat_color_sender">#1E88E5</color>
+    <color name="chat_color_receiver">#7CB342</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+
+    <color name="_bg__detail_product_ek2_color">#FBFBFF</color>
+    <color name="_bg__details_ek1_color">#FFFFFF</color>
+    <color name="_bg__button_ek1_color">#000000</color>
+    <color name="the_aluminium_case_is_lightweight_and_made_from_100_percent_recycled_aerospace_grade_alloy__color">#9095A6</color>
+    <color name="details_ek2_color">#5B40FF</color>
+    <color name="ellipse_1_color">#FFC8B6</color>
+    <color name="ellipse_1_ek1_color">#F0DEC5</color>
+    <color name="ellipse_1_ek2_color">#5E8376</color>
+    <color name="colors_ek2_color">#1B153D</color>
+    <color name="container_color">#ffffff</color>
+    <color name="indicator_color">#344054</color>
 </resources>
