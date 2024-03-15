@@ -17,7 +17,7 @@ public class CompetePaymentActivity extends AppCompatActivity {
 
         LinearLayout btnBackToHome = findViewById(R.id.btnBackToHome);
         btnBackToHome.setOnClickListener(v -> {
-            Intent intent = new Intent(CompetePaymentActivity.this, MainActivity.class);
+            Intent intent = new Intent(CompetePaymentActivity.this, ProductListActivity.class);
             startActivity(intent);
         });
     }

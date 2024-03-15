@@ -1,5 +1,7 @@
 package com.mobilers.gift_hommie_mobile.service;
 
+import android.util.Log;
+
 import com.mobilers.gift_hommie_mobile.model.auth.Account;
 import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
@@ -10,6 +12,8 @@ public class GlobalService {
     private Product product;
     private Account account;
     private CheckoutDTO checkoutDTO;
+    private boolean isAuthenticated;
+
     private GlobalService() {}
 
     public static synchronized GlobalService getInstance() {
@@ -17,6 +21,11 @@ public class GlobalService {
             instance = new GlobalService();
         }
         return instance;
+    }
+
+    public void clear() {
+        account = null;
+        isAuthenticated = false;
     }
 
     public CheckoutDTO getCheckoutDTO() {
@@ -43,5 +52,13 @@ public class GlobalService {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public boolean isAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        isAuthenticated = authenticated;
     }
 }

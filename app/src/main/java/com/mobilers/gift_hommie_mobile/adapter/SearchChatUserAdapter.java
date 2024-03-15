@@ -36,10 +36,12 @@ public class SearchChatUserAdapter extends FirestoreRecyclerAdapter<UserDTO, Sea
 
     @Override
     protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull UserDTO model) {
+        String modName = model.getUsername();
+        if(modName.equals("staff")) modName = "Shop";
         if (model.getUId().equals(uId)) {
-            holder.usernameText.setText(model.getUsername() + " (Me)");
+            holder.usernameText.setText(modName + " (Me)");
         } else {
-            holder.usernameText.setText(model.getUsername());
+            holder.usernameText.setText(modName);
         }
 
         holder.itemView.setOnClickListener(v -> {

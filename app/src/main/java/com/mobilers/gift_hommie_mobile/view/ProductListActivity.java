@@ -1,11 +1,13 @@
 package com.mobilers.gift_hommie_mobile.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.ProductListAdapter;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
 
 import retrofit2.Call;
@@ -35,6 +38,20 @@ public class ProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_layout);
 
+        if (!GlobalService.getInstance().isAuthenticated()) {
+            Intent intent = new Intent(ProductListActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        ImageView ivMenu = findViewById(R.id.ivMenu);
+        ivMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductListActivity.this, User_Page_Activity.class);
+            startActivity(intent);
+            return;
+        });
+
         rvProductList = findViewById(R.id.rvProductList);
         rvProductList.setLayoutManager(new LinearLayoutManager(this));
         etSearch = findViewById(R.id.etSearch);
@@ -43,12 +60,16 @@ public class ProductListActivity extends AppCompatActivity {
         // Thực hiện setup Spinner với danh sách danh mục sản phẩm
         setupCategorySpinner();
 
-        Button btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        // Xử lý sự kiện nhấn phím Enter trên EditText để thực hiện tìm kiếm
+        etSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onClick(View v) {
-                String keyword = etSearch.getText().toString().trim();
-                performSearch(keyword);
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    String keyword = etSearch.getText().toString().trim();
+                    performSearch(keyword);
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -63,15 +84,41 @@ public class ProductListActivity extends AppCompatActivity {
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Lấy categoryId tương ứng với danh mục được chọn
-                int categoryId = position + 1; // Ví dụ: position 0 sẽ có categoryId = 1
-                // Gọi phương thức để lấy danh sách sản phẩm theo categoryId
-                getProductsByCategory(categoryId);
+                String selectedCategory = (String) parentView.getItemAtPosition(position);
+                if (position == 0) {
+                    // Nếu người dùng chọn "Tất cả", hiển thị toàn bộ sản phẩm
+                    displayAllProducts();
+                } else {
+                    // Nếu không, lấy categoryId tương ứng với danh mục được chọn và lấy sản phẩm theo categoryId
+                    int categoryId = position; // Ví dụ: position 0 sẽ có categoryId = 1
+                    getProductsByCategory(categoryId);
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Không làm gì khi không có danh mục nào được chọn
+            }
+        });
+    }
+
+    private void displayAllProducts() {
+        ProductAPIService productAPIService = new ProductAPIService();
+        productAPIService.getAllProducts(new Callback<ProductListResponseDTO>() {
+            @Override
+            public void onResponse(Call<ProductListResponseDTO> call, Response<ProductListResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    // Cập nhật RecyclerView với danh sách sản phẩm mới
+                    productListAdapter = new ProductListAdapter(ProductListActivity.this, response.body().getContent());
+                    rvProductList.setAdapter(productListAdapter);
+                } else {
+                    Toast.makeText(ProductListActivity.this, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductListResponseDTO> call, Throwable t) {
+                Toast.makeText(ProductListActivity.this, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

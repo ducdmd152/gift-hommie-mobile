@@ -10,62 +10,11 @@
     android:weightSum="100"
     tools:context=".view.TestChatLogin">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_weight="20"
-        android:src="@drawable/user_icon"
-        app:tint="@color/chat_test" />
-
-    <TextView
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/pb_username"
+        android:layout_width="32dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:letterSpacing="0.08"
-        android:textColor="@color/chat_test"
-        android:text="Enter your Username"
-        android:textSize="21sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/chat_test" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edt_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/edt_rounded_corner"
-            android:elevation="5dp"
-            android:hint="Username"
-            android:padding="10dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_letMeIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_rounded_bg"
-            android:text="LET ME IN" />
-
-        <ProgressBar
-            android:id="@+id/pb_username"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminateTint="@color/chat_test" />
-
-    </LinearLayout>
 </LinearLayout>

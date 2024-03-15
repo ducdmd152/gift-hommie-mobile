@@ -57,6 +57,6 @@ public class CartDTO {
     }
 
     public double getTotal() {
-        return quantity*product.getPrice();
+        return quantity* product.getPrice();
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import com.mobilers.gift_hommie_mobile.adapter.ChatAdapter;
 import com.mobilers.gift_hommie_mobile.model.firebase.ChatMessageDTO;
 import com.mobilers.gift_hommie_mobile.model.firebase.ChatroomDTO;
 import com.mobilers.gift_hommie_mobile.model.firebase.UserDTO;
+import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.util.AndroidUtil;
 import com.mobilers.gift_hommie_mobile.util.FirebaseUtil;
 
@@ -29,7 +31,7 @@ import java.util.Arrays;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private String  uId;
+    private String uId;
     private UserDTO otherUser;
     private ChatroomDTO chatroomModel;
     private String chatroomId;
@@ -71,14 +73,14 @@ public class ChatActivity extends AppCompatActivity {
         setupChatRecyclerView();
     }
 
-    private void setupChatRecyclerView(){
+    private void setupChatRecyclerView() {
         Query query = FirebaseUtil.getChatroomMessageReference(chatroomId)
                 .orderBy("timestamp", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<ChatMessageDTO> options = new FirestoreRecyclerOptions.Builder<ChatMessageDTO>()
-                .setQuery(query,ChatMessageDTO.class).build();
+                .setQuery(query, ChatMessageDTO.class).build();
 
-        chatAdapter = new ChatAdapter(options,getApplicationContext());
+        chatAdapter = new ChatAdapter(options, getApplicationContext());
         chatAdapter.setUId(uId);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setReverseLayout(true);
@@ -106,7 +108,7 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             messageInput.setText("");
                         }
                     }
@@ -128,5 +130,15 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (GlobalService.getInstance().getAccount().getRoleId() == 2) {
+            super.onBackPressed();
+        } else {
+            Intent mIntent = new Intent(this, ProductListActivity.class);
+            startActivity(mIntent);
+        }
     }
 }

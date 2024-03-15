@@ -5,6 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import retrofit2.Call;
+
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,19 +16,27 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mobilers.gift_hommie_mobile.R;
+import com.mobilers.gift_hommie_mobile.model.cart.AddToCartDTO;
+import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
+import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
+
+import retrofit2.Callback;
+
+
+import retrofit2.Response;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private ImageView imgAvatar;
     private TextView tvProductName, tvPrice, tvQuantity, tvDescription, tvReviews;
-    private Button btnAddToCart, btnBuyNow;
+    private TextView btnAddToCart, btnBuyNow;
     private RecyclerView rvReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_product_details_custom);
 
         // Initialize views
         imgAvatar = findViewById(R.id.imgAvatar);
@@ -32,10 +44,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvQuantity = findViewById(R.id.tvQuantity);
         tvDescription = findViewById(R.id.tvDescription);
-        tvReviews = findViewById(R.id.tvReviews);
+//        tvReviews = findViewById(R.id.tvReviews);
         btnAddToCart = findViewById(R.id.btnAddToCart);
-        btnBuyNow = findViewById(R.id.btnBuyNow);
-        rvReviews = findViewById(R.id.rvReviews);
+//        btnBuyNow = findViewById(R.id.btnBuyNow);
+//        rvReviews = findViewById(R.id.rvReviews);
 
         // Get the product data from the intent
         Product product = (Product) getIntent().getSerializableExtra("product");
@@ -46,27 +58,39 @@ public class ProductDetailsActivity extends AppCompatActivity {
             // Set product details to views
             Glide.with(this).load(imageUrl).into(imgAvatar); // Load and display image from URL
             tvProductName.setText(product.getName());
-            tvPrice.setText("Giá: " + product.getPrice()+"đ");
-            tvQuantity.setText("Số lượng: " + product.getQuantity());
+            tvPrice.setText(product.getPrice() + "đ");
+            tvQuantity.setText("Còn lại " + product.getQuantity()+" sản phẩm");
             tvDescription.setText(product.getDescription());
 
-            // Handle Add to Cart button click
+
             btnAddToCart.setOnClickListener(v -> {
-                // Add product to cart logic here
-                Toast.makeText(ProductDetailsActivity.this, "Product added to cart", Toast.LENGTH_SHORT).show();
+                AddToCartDTO addToCartDTO = new AddToCartDTO();
+                addToCartDTO.setProductId(product.getId());
+                CartAPIService apiService = new CartAPIService();
+                apiService.addToCart(addToCartDTO, new Callback<CartDTO>() {
+                    @Override
+                    public void onResponse(Call<CartDTO> call, Response<CartDTO> response) {
+                        if (response.isSuccessful()) {
+                            // Xử lý phản hồi thành công
+                            Toast.makeText(ProductDetailsActivity.this, "Đã thêm  vào giỏ hàng ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Xử lý phản hồi không thành công
+                            Toast.makeText(ProductDetailsActivity.this, "Không thể thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CartDTO> call, Throwable t) {
+                        // Xử lý lỗi
+                        Toast.makeText(ProductDetailsActivity.this, "Không thể kết nối đến máy chủ", Toast.LENGTH_SHORT).show();
+                        t.printStackTrace();
+                    }
+                });
             });
 
-            // Handle Buy Now button click
-            btnBuyNow.setOnClickListener(v -> {
-                // Buy now logic here
-                Toast.makeText(ProductDetailsActivity.this, "Buying now", Toast.LENGTH_SHORT).show();
-            });
 
-            // Initialize and set up RecyclerView for reviews
-            // Example:
-            // ReviewAdapter reviewAdapter = new ReviewAdapter(product.getReviews());
-            // rvReviews.setAdapter(reviewAdapter);
-            // rvReviews.setLayoutManager(new LinearLayoutManager(this));
+
         }
+
     }
 }
