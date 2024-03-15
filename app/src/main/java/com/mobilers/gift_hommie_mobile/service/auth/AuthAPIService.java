@@ -20,8 +20,8 @@ public class AuthAPIService {
         Call<Account> call = authApiService.login(GlobalService.getInstance().getAccount());
         call.enqueue(callback);
     }
-    public void register(int id, Callback<Account> callback) {
-        Call<Account> call = authApiService.register(GlobalService.getInstance().getAccount());
+    public void register(Account model, Callback<Account> callback) {
+        Call<Account> call = authApiService.register(model);
         call.enqueue(callback);
     }
 }
