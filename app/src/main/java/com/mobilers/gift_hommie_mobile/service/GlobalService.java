@@ -1,5 +1,7 @@
 package com.mobilers.gift_hommie_mobile.service;
 
+import android.util.Log;
+
 import com.mobilers.gift_hommie_mobile.model.auth.Account;
 import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
 import com.mobilers.gift_hommie_mobile.model.product.Product;

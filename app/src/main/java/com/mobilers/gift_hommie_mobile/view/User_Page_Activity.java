@@ -2,6 +2,7 @@ package com.mobilers.gift_hommie_mobile.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,8 +66,9 @@ public class User_Page_Activity extends AppCompatActivity {
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(User_Page_Activity.this, ChatActivity.class); ----> Delete this when have Chat
-//                startActivity(intent);
+                Intent intent = new Intent(User_Page_Activity.this, TestChatLogin.class);
+                intent.putExtra("mId", GlobalService.getInstance().getAccount().getUsername());
+                startActivity(intent);
             }
         });
 

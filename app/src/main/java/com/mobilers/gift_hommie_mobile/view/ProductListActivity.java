@@ -149,8 +149,4 @@ public class ProductListActivity extends AppCompatActivity {
             productListAdapter.filter(keyword);
         }
     }
-
-    @Override
-    public void onBackPressed() {
-    }
 }

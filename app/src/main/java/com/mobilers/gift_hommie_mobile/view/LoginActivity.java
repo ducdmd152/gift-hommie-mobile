@@ -32,13 +32,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         context = LoginActivity.this;
-        btnLogin=findViewById(R.id.btnLogin);
-        btnSignup=findViewById(R.id.btnSignup);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnSignup = findViewById(R.id.btnSignup);
         edtUser = findViewById(R.id.edtUser);
         edtPwd = findViewById(R.id.edtPwd);
+
         // Set click listener for login button
-        btnLogin.setOnClickListener(view ->{
-            if(!checkInput())
+        btnLogin.setOnClickListener(view -> {
+            if (!checkInput())
                 return;
             GlobalService.getInstance().setAccount(new Account(
                     edtUser.getText().toString().toLowerCase().trim(),
@@ -52,11 +53,15 @@ public class LoginActivity extends AppCompatActivity {
                         account.setPassword(edtPwd.getText().toString());
                         GlobalService.getInstance().setAccount(account);
                         GlobalService.getInstance().setAuthenticated(true);
-                        Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
-                        startActivity(intent);
-                    }
-
-                    else {
+                        if (GlobalService.getInstance().getAccount().getRoleId() == 1) {
+                            Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, TestChatLogin.class);
+                            intent.putExtra("mId", GlobalService.getInstance().getAccount().getUsername());
+                            startActivity(intent);
+                        }
+                    } else {
                         Toast.makeText(context, "Đăng nhập thất bại,\nvui lòng kiểm tra thông tin!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -73,15 +78,16 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
     private boolean checkInput() {
         if (TextUtils.isEmpty(edtUser.getText().toString())) {
             edtUser.setError(REQUIRE);
-            return  false;
+            return false;
         }
 
         if (TextUtils.isEmpty(edtPwd.getText().toString())) {
             edtPwd.setError(REQUIRE);
-            return  false;
+            return false;
         }
 
         return true;
