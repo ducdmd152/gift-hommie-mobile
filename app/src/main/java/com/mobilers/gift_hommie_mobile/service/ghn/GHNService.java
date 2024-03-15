@@ -43,6 +43,9 @@ public class GHNService {
 
     public static void createOrder(CheckoutDTO checkoutDTO, Callback<ShippingResponseDTO> callback) {
         Call<ShippingResponseDTO> call = GHNApiClient.getClient().createOrder(new ShippingRequestDTO(checkoutDTO));
+        Gson gson = new Gson();
+        Log.d("checkoutDTO: ", gson.toJson(checkoutDTO));
+        Log.d("Request: ", gson.toJson(new ShippingRequestDTO(checkoutDTO)));
         call.enqueue(callback);
     }
 }

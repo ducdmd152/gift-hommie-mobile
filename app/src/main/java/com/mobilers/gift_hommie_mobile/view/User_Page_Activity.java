@@ -37,6 +37,15 @@ public class User_Page_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button btnHome = findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(User_Page_Activity.this, ProductListActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

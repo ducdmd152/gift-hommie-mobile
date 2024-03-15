@@ -9,16 +9,26 @@
     android:padding="20dp"
     tools:context=".view.MapActivity">
 
-    <EditText
-        android:id="@+id/source"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Đường đi đến cửa hàng"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/source"
+        android:layout_width="240dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
         android:hint="Nhập vị trí hiện tại" />
+
     <EditText
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "FPT University HCMC" />
+        android:gravity="center"
+        android:text="Hommie Store | FPT University HCMC" />
+
     <Button
         android:id="@+id/btnSubmit"
         android:text= "Đường đi"

@@ -64,8 +64,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
             btnAddToCart.setOnClickListener(v -> {
-                AddToCartDTO addToCartDTO = new AddToCartDTO();
-                addToCartDTO.setProductId(product.getId());
+                AddToCartDTO addToCartDTO = new AddToCartDTO(product);
                 CartAPIService apiService = new CartAPIService();
                 apiService.addToCart(addToCartDTO, new Callback<CartDTO>() {
                     @Override

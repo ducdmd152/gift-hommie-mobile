@@ -7,21 +7,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.CheckoutActivity">
-    <FrameLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/header"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="0dp"
-        android:gravity="center"
+        android:gravity="left|center"
         android:backgroundTint="@color/white"
+        android:paddingLeft="18dp"
         >
+        <ImageView
+            android:id="@+id/ivMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_menu" />
         <TextView
             android:id="@+id/text_checkout"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginLeft="21dp"
-            android:layout_marginTop="15dp"
             android:gravity="left|center_vertical"
             android:includeFontPadding="false"
             android:maxLines="1"
@@ -30,7 +37,7 @@
             android:textStyle="bold"
             android:textColor="#FF121212"
             android:textSize="28dp" />
-    </FrameLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

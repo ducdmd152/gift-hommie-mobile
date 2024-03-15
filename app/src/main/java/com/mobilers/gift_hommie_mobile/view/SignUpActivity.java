@@ -51,15 +51,15 @@ public class SignUpActivity extends AppCompatActivity {
             String phone = etPhone.getText().toString().trim();
 
             Account register = new Account();
+            register.setName(name);
             register.setFirstName(name);
             register.setUsername(username);
             register.setPassword(password);
-            register.setRoleId(2);
+            register.setRoleId(1);
             register.setEmail(email);
             register.setPhone(phone);
-            GlobalService.getInstance().setAccount(register);
             AuthAPIService apiService = new AuthAPIService();
-            apiService.login(new Callback<Account>() {
+            apiService.register(register, new Callback<Account>() {
                 @Override
                 public void onResponse(Call<Account> call, Response<Account> response) {
                     if (response.isSuccessful()) {
@@ -71,7 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
                     else {
-                        Toast.makeText(context, "Đăng nhập thất bại,\nvui lòng kiểm tra thông tin!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đăng kí thất bại,\nvui lòng kiểm tra thông tin!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -125,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
             return  false;
         }
 
-        if (!Util.validateEmail(etPhone.getText().toString())) {
+        if (!Util.validatePhoneNumber(etPhone.getText().toString())) {
             Toast.makeText(this, "Invalid phone format!", Toast.LENGTH_LONG).show();
             return  false;
         }

@@ -4,8 +4,9 @@ public class Account {
     private String email;
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String firstName = "";
+    private String lastName = "";
+    private String name = "";
     private int roleId;
 
     public Account() {
@@ -17,7 +18,7 @@ public class Account {
         this.password = password;
         this.firstName = "";
         this.lastName = "";
-        this.roleId = 2;
+        this.roleId = 1;
     }
     public Account(String email, String username, String password) {
         this.email = email;
@@ -25,7 +26,7 @@ public class Account {
         this.password = password;
         this.firstName = "";
         this.lastName = "";
-        this.roleId = 2;
+        this.roleId = 1;
     }
 
     public Account(String email, String username, String firstName, String lastName, int roleId) {
@@ -34,6 +35,10 @@ public class Account {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roleId = roleId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -60,6 +65,9 @@ public class Account {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
     public String getFirstName() {
         return firstName;
     }

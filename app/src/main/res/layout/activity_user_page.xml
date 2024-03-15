@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:shape="oval"
@@ -33,6 +33,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name@gmai.com" />
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:backgroundTint="#10000000"
+            android:layout_marginTop="20dp"
+            android:text="Cửa hàng"
+            />
         <Button
             android:id="@+id/btnCart"
             android:layout_width="240dp"
