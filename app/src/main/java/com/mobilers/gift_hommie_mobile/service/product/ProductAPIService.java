@@ -38,8 +38,8 @@ public class ProductAPIService {
         Call<ProductListResponseDTO> call = apiService.getProductsByCategory(endpoint, categoryId);
         call.enqueue(callback);
     }
-    public void getAllProducts(Callback<ProductListResponseDTO> callback) {
-        Call<ProductListResponseDTO> call = apiService.getAllProducts(endpoint);
+    public void getAllProducts(int pageSize, Callback<ProductListResponseDTO> callback) {
+        Call<ProductListResponseDTO> call = apiService.getAllProducts(endpoint, pageSize);
         call.enqueue(callback);
     }
 //    public void create(Product model, Callback<Product> callback) {

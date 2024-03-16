@@ -1,15 +1,11 @@
 package com.mobilers.gift_hommie_mobile.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import retrofit2.Call;
-
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,10 +16,10 @@ import com.mobilers.gift_hommie_mobile.model.cart.AddToCartDTO;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
+import com.mobilers.gift_hommie_mobile.util.Util;
 
+import retrofit2.Call;
 import retrofit2.Callback;
-
-
 import retrofit2.Response;
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -58,10 +54,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
             // Set product details to views
             Glide.with(this).load(imageUrl).into(imgAvatar); // Load and display image from URL
             tvProductName.setText(product.getName());
-            tvPrice.setText(product.getPrice() + "đ");
-            tvQuantity.setText("Còn lại " + product.getQuantity()+" sản phẩm");
+            tvPrice.setText(Util.formatPriceVND(product.getPrice())); // Format price using Util class
+            tvQuantity.setText("Còn lại " + product.getQuantity() + " sản phẩm");
             tvDescription.setText(product.getDescription());
 
+            TextView btnMoveToCart = findViewById(R.id.btnMoveToCart);
+
+            // Thiết lập sự kiện click cho TextView btnMoveToCart
+            btnMoveToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Tạo Intent để chuyển sang ActivityCart
+                    Intent intent = new Intent(ProductDetailsActivity.this, CartActivity.class);
+                    startActivity(intent); // Bắt đầu ActivityCart
+                }
+            });
 
             btnAddToCart.setOnClickListener(v -> {
                 AddToCartDTO addToCartDTO = new AddToCartDTO(product);
@@ -71,7 +78,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     public void onResponse(Call<CartDTO> call, Response<CartDTO> response) {
                         if (response.isSuccessful()) {
                             // Xử lý phản hồi thành công
-                            Toast.makeText(ProductDetailsActivity.this, "Đã thêm  vào giỏ hàng ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductDetailsActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                         } else {
                             // Xử lý phản hồi không thành công
                             Toast.makeText(ProductDetailsActivity.this, "Không thể thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
@@ -86,10 +93,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     }
                 });
             });
-
-
-
         }
-
     }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.product.Product;
+import com.mobilers.gift_hommie_mobile.util.Util;
 import com.mobilers.gift_hommie_mobile.view.ProductDetailsActivity;
 
 import java.util.ArrayList;
@@ -42,7 +43,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = filteredProductList.get(position); // Change here to use filteredProductList
         holder.tvProductName.setText(product.getName());
-        holder.tvProductPrice.setText("Giá: " + product.getPrice() + " đ");
+        String formattedPrice = Util.formatPriceVND(product.getPrice());
+        holder.tvProductPrice.setText("Giá: " + formattedPrice);
+
 
         // Sử dụng Glide để tải ảnh từ URL và hiển thị trong ImageView
         Glide.with(context)
