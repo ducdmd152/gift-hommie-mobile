@@ -38,8 +38,8 @@ import java.util.List;
             }
             Picasso.get().load(item.getProduct().getAvatar()).into(holder.avatar);
             holder.name.setText(item.getProduct().getName());
-            holder.price.setText("Giá: "+String.valueOf(item.getPrice())+"đ");
-            holder.quanlity.setText("Số luọng: "+String.valueOf(item.getQuantity()));
+            holder.price.setText("Giá: "+(int)item.getPrice()+"đồng");
+            holder.quanlity.setText("Số luọng: "+item.getQuantity());
         }
 
         @Override

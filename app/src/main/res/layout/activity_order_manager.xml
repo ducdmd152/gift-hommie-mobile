@@ -6,15 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Đơn hàng tôi"
-        android:textSize="30dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/order_home"
+            android:layout_width="60dp"
+            android:layout_height="65dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/order_icon_home"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Đơn hàng tôi"
+            android:textSize="30dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@color/button_order">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -37,6 +51,7 @@
 
                     <Button
                         android:id="@+id/order_all"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tất cả"
@@ -45,6 +60,7 @@
 
                     <Button
                         android:id="@+id/ordered"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="đã đặt hàng"
@@ -53,6 +69,7 @@
 
                     <Button
                         android:id="@+id/delivering"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="đang giao"
@@ -61,6 +78,7 @@
 
                     <Button
                         android:id="@+id/accomplished"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="đã hoàn thành"
@@ -69,6 +87,7 @@
 
                     <Button
                         android:id="@+id/cancelled"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="đã hủy"
@@ -77,6 +96,7 @@
 
                     <Button
                         android:id="@+id/failure"
+                        android:alpha="0.5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="thất bại"
@@ -98,42 +118,4 @@
         android:layout_marginBottom="5dp"/>
 
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp">
-
-        <ImageButton
-            android:id="@+id/home"
-            android:layout_width="0dp"
-            android:layout_height="65dp"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/order_icon_home"
-            android:background="@drawable/order_custom_buttom_order_managemet"
-            android:layout_marginStart="10dp"/>
-
-        <ImageButton
-            android:id="@+id/gio_hang"
-            android:layout_width="0dp"
-            android:layout_height="65dp"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/order_icon_giohang"
-            android:background="@drawable/order_custom_buttom_order_managemet"
-            android:layout_marginStart="10dp"/>
-
-        <ImageButton
-            android:id="@+id/avatar"
-            android:layout_width="0dp"
-            android:layout_height="65dp"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/order_icon_avatar"
-            android:background="@drawable/order_custom_buttom_order_managemet"
-            android:layout_marginStart="10dp"/>
-    </LinearLayout>
 </LinearLayout>

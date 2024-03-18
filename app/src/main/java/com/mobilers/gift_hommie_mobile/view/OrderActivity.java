@@ -2,6 +2,11 @@ package com.mobilers.gift_hommie_mobile.view;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,9 +15,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cardinalcommerce.a.getProgressView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.OrderItemAdapter;
 import com.mobilers.gift_hommie_mobile.adapter.OrderPakageAdapter;
@@ -43,6 +50,23 @@ public class OrderActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_manager);
 
+        Button btnDaDatHang = findViewById(R.id.ordered);
+        Button btndelivering = findViewById(R.id.delivering);
+        Button btnDaHoangThanh = findViewById(R.id.accomplished);
+        Button btncancelled = findViewById(R.id.cancelled);
+        Button btnAll = findViewById(R.id.order_all);
+        Button btnfailure = findViewById(R.id.failure);
+        Button btnhome = findViewById(R.id.order_home);
+
+
+        btnAll.setAlpha(1f);
+        btnDaDatHang.setAlpha(0.5f);
+        btndelivering.setAlpha(0.5f);
+        btnDaHoangThanh.setAlpha(0.5f);
+        btncancelled.setAlpha(0.5f);
+        btnfailure.setAlpha(0.5f);
+
+
         initViews();
         initRecyclerView();
         initService();
@@ -52,50 +76,94 @@ public class OrderActivity extends AppCompatActivity {
             apiCalled = true;
         }
 
-        Button btnDaDatHang = findViewById(R.id.ordered);
+
         btnDaDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(0.5f);
+                btnDaDatHang.setAlpha(1f);
+                btndelivering.setAlpha(0.5f);
+                btnDaHoangThanh.setAlpha(0.5f);
+                btncancelled.setAlpha(0.5f);
+                btnfailure.setAlpha(0.5f);
                 filterDataDaDatHang();
             }
         });
 
-        Button btndelivering = findViewById(R.id.delivering);
+
         btndelivering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(0.5f);
+                btnDaDatHang.setAlpha(0.5f);
+                btndelivering.setAlpha(1f);
+                btnDaHoangThanh.setAlpha(0.5f);
+                btncancelled.setAlpha(0.5f);
+                btnfailure.setAlpha(0.5f);
                 filterdelivering();
             }
         });
 
-        Button btnDaHoangThanh = findViewById(R.id.accomplished);
+
         btnDaHoangThanh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(0.5f);
+                btnDaDatHang.setAlpha(0.5f);
+                btndelivering.setAlpha(0.5f);
+                btnDaHoangThanh.setAlpha(1f);
+                btncancelled.setAlpha(0.5f);
+                btnfailure.setAlpha(0.5f);
                 filterDaHoangThanh();
             }
         });
 
-        Button btncancelled = findViewById(R.id.cancelled);
+
         btncancelled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(0.5f);
+                btnDaDatHang.setAlpha(0.5f);
+                btndelivering.setAlpha(0.5f);
+                btnDaHoangThanh.setAlpha(0.5f);
+                btncancelled.setAlpha(1f);
+                btnfailure.setAlpha(0.5f);
                 filtercancelled();
             }
         });
 
-        Button btnAll = findViewById(R.id.order_all);
+
         btnAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(1f);
+                btnDaDatHang.setAlpha(0.5f);
+                btndelivering.setAlpha(0.5f);
+                btnDaHoangThanh.setAlpha(0.5f);
+                btncancelled.setAlpha(0.5f);
+                btnfailure.setAlpha(0.5f);
                 filterAll();
             }
         });
-        Button btnfailure = findViewById(R.id.failure);
+
         btnfailure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnAll.setAlpha(0.5f);
+                btnDaDatHang.setAlpha(0.5f);
+                btndelivering.setAlpha(0.5f);
+                btnDaHoangThanh.setAlpha(0.5f);
+                btncancelled.setAlpha(0.5f);
+                btnfailure.setAlpha(1f);
                 filterfailure();
+            }
+        });
+
+        btnhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -111,7 +179,6 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initService() {
-        // Khởi tạo dịch vụ
     }
 
     private void callOrderAPI() {
