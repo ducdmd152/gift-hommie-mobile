@@ -7,58 +7,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/container_home"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_marginTop="-16dp"
+    android:gravity="left|top"
+    android:paddingTop="0dp"
+    >
 
     <LinearLayout
+        android:layout_marginTop="8dp"
         android:id="@+id/container_menu_search"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_gravity="left"
+        android:gravity="left|center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ivMenu"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
             android:scaleType="centerInside"
             android:src="@drawable/image_menu" />
 
         <FrameLayout
             android:id="@+id/container_group"
-            android:layout_width="0dp"
+            android:layout_width="345dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:layout_marginStart="16dp"
             android:background="@drawable/container_product_card2"
             android:clipToPadding="false"
-            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
             android:paddingTop="12dp"
-            android:paddingEnd="16dp"
+            android:paddingRight="16dp"
             android:paddingBottom="12dp">
 
             <ImageView
                 android:id="@+id/image_search_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_gravity="left|center_vertical"
+                android:layout_gravity="left"
                 android:scaleType="centerInside"
                 android:src="@drawable/image_search_icon" />
 
             <EditText
                 android:id="@+id/etSearch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="251dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginEnd="16dp"
-                android:hint="Nhập từ khóa tìm kiếm"
-                android:background="@android:color/transparent"
+                android:layout_marginBottom="4dp"
                 android:gravity="left|center_vertical"
+                android:hint="Nhập từ khóa tìm kiếm"
                 android:maxLines="1"
                 android:paddingStart="12dp"
                 android:paddingTop="8dp"
@@ -66,12 +68,10 @@
                 android:paddingBottom="8dp"
                 android:singleLine="true"
                 android:textColor="#FF1B153D"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/image_search_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:textSize="14dp" />
 
         </FrameLayout>
+
 
     </LinearLayout>
 
