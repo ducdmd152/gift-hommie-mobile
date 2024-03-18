@@ -55,7 +55,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             Glide.with(this).load(imageUrl).into(imgAvatar); // Load and display image from URL
             tvProductName.setText(product.getName());
             tvPrice.setText(Util.formatPriceVND(product.getPrice())); // Format price using Util class
-            tvQuantity.setText("Còn lại " + product.getQuantity() + " sản phẩm");
+            tvQuantity.setText("Còn lại " + product.getAvailable() + " sản phẩm");
             tvDescription.setText(product.getDescription());
 
             TextView btnMoveToCart = findViewById(R.id.btnMoveToCart);
