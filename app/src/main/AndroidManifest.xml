@@ -55,6 +55,11 @@
         <activity
             android:name=".view.SearchChatUserActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".view.MapActivity"
+            android:exported="false" />
+
         <activity
             android:name=".view.ProductListActivity"
             android:exported="true">
