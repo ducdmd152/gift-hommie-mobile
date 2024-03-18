@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.order.OrderItemDTO;
 import com.mobilers.gift_hommie_mobile.model.order.OrderPackageDTO;
+import com.mobilers.gift_hommie_mobile.util.Util;
 
 import java.util.List;
 
@@ -44,13 +45,45 @@ public class OrderPakageAdapter extends RecyclerView.Adapter<OrderPakageAdapter.
            return;
        }
        holder.date.setText(dto.getCreateTime());
-        holder.status.setText(dto.getStatus());
-        int tatal = 30000;
+        int tatal = (int) dto.getShippingFee();
+
+        holder.ship.setText("Vận chuyển: "+Util.formatPriceVND((int)dto.getShippingFee()));
         for (OrderItemDTO item : dto.getOrderItem())
         {
             tatal = (int) (tatal+ item.getProduct().getPrice());
         }
-        holder.tatol.setText("Tổng cộng: "+String.valueOf(tatal) +" đồng");
+
+        holder.tatol.setText("Tổng cộng: "+ Util.formatPriceVND((tatal)));
+
+        if (dto.getStatus().equals("PENDING")||dto.getStatus().equals("CONFIRMED")){
+            holder.status.setText("Đã đặt hàng");
+            holder.mualai.setVisibility(View.GONE);
+            holder.danhgia.setVisibility(View.GONE);
+            holder.dadanhgia.setVisibility(View.GONE);
+        }
+        if (dto.getStatus().equals("DELIVERYING")){
+            holder.status.setText("Đang giao");
+            holder.mualai.setVisibility(View.GONE);
+            holder.danhgia.setVisibility(View.GONE);
+            holder.dadanhgia.setVisibility(View.GONE);
+        }
+        if (dto.getStatus().equals("SUCCESSFUL")){
+            holder.status.setText("Thành công");
+            holder.huy.setVisibility(View.GONE);
+            holder.dadanhgia.setVisibility(View.GONE);
+        }
+        if (dto.getStatus().equals("FAIL")){
+            holder.status.setText("Thất bại");
+            holder.danhgia.setVisibility(View.GONE);
+            holder.dadanhgia.setVisibility(View.GONE);
+            holder.huy.setVisibility(View.GONE);
+        }
+        if (dto.getStatus().equals("REFUSED")){
+            holder.status.setText("Đã hủy");
+            holder.danhgia.setVisibility(View.GONE);
+            holder.dadanhgia.setVisibility(View.GONE);
+            holder.huy.setVisibility(View.GONE);
+        }
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
@@ -73,7 +106,7 @@ public class OrderPakageAdapter extends RecyclerView.Adapter<OrderPakageAdapter.
     public class OrderAdapterViewHolder extends RecyclerView.ViewHolder{
         private TextView date,status,ship,tatol;
         private RecyclerView pakage;
-        Button chitiet, huy, mulai, danhgia, dadanhgia;
+        Button chitiet, huy, mualai, danhgia, dadanhgia;
         public OrderAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -81,12 +114,13 @@ public class OrderPakageAdapter extends RecyclerView.Adapter<OrderPakageAdapter.
             status=itemView.findViewById(R.id.order_status);
             ship=itemView.findViewById(R.id.order_ship);
             tatol=itemView.findViewById(R.id.order_tatol);
+            ship=itemView.findViewById(R.id.order_ship);
 
             pakage = itemView.findViewById(R.id.order_recycleview_detail);
 
             chitiet = itemView.findViewById(R.id.oeder_detail);
             huy = itemView.findViewById(R.id.oeder_cancel);
-            mulai = itemView.findViewById(R.id.oeder_repurchase);
+            mualai = itemView.findViewById(R.id.oeder_repurchase);
             danhgia = itemView.findViewById(R.id.oeder_Evaluate);
             dadanhgia = itemView.findViewById(R.id.oeder_evaluated);
         }

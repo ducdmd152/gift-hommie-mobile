@@ -1,6 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:background="@color/package_order"
+    android:layout_height="300dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -48,20 +50,22 @@
             android:text="Phí ship: 30000d"
             android:layout_marginTop="25dp"
             android:layout_marginStart="30dp"/>
+
         <TextView
             android:id="@+id/order_tatol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tổng đơn hàng :98700d"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
-            android:layout_marginStart="80dp"
-            android:gravity="right"/>
+            android:gravity="right"
+            android:text="Tổng đơn hàng :98700d" />
 
     </LinearLayout>
 
 
 
     <ScrollView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
@@ -71,9 +75,10 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="end">
 
                 <Button
                     android:id="@+id/oeder_detail"
@@ -81,40 +86,47 @@
                     android:layout_height="wrap_content"
                     android:text="Chi tiết"
                     android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet"/>
-
+                    android:backgroundTint="@color/button_package_order"/>
 
                 <Button
                     android:id="@+id/oeder_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="hủy"
+                    android:layout_marginLeft="2dp"
                     android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet" />
+                    android:backgroundTint="@color/button_package_order"/>
+
 
                 <Button
                     android:id="@+id/oeder_repurchase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="mua lại"
+                    android:layout_marginLeft="2dp"
                     android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet" />
+                    android:backgroundTint="@color/button_package_order"/>
+
 
                 <Button
                     android:id="@+id/oeder_Evaluate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="đánh giá"
+                    android:layout_marginLeft="2dp"
                     android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet" />
+                    android:backgroundTint="@color/button_package_order"/>
+
 
                 <Button
                     android:id="@+id/oeder_evaluated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="đã đánh giá"
+                    android:layout_marginLeft="2dp"
                     android:textColor="@android:color/black"
-                    android:background="@drawable/order_custom_buttom_order_managemet" />
+                    android:backgroundTint="@color/button_package_order"/>
+
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>

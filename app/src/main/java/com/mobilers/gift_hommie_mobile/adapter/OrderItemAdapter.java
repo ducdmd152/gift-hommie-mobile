@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.order.OrderItemDTO;
+import com.mobilers.gift_hommie_mobile.util.Util;
 import com.squareup.picasso.Picasso;
 
 
@@ -36,10 +37,11 @@ import java.util.List;
             if (item == null){
                 return;
             }
+
             Picasso.get().load(item.getProduct().getAvatar()).into(holder.avatar);
             holder.name.setText(item.getProduct().getName());
-            holder.price.setText("Giá: "+String.valueOf(item.getPrice())+"đ");
-            holder.quanlity.setText("Số luọng: "+String.valueOf(item.getQuantity()));
+            holder.price.setText("Giá: "+ Util.formatPriceVND((int)item.getPrice()));
+            holder.quanlity.setText("Số lượng: "+item.getQuantity());
         }
 
         @Override

@@ -6,11 +6,13 @@ public class OrderPackageDTO {
     private List<OrderItemDTO> orderDetails;
     private String createTime;
     private String status;
+    private double shippingFee;
 
-    public OrderPackageDTO(List<OrderItemDTO> orderDetails, String createTime, String status) {
+    public OrderPackageDTO(List<OrderItemDTO> orderDetails, String createTime, String status, double shippingFee) {
         this.orderDetails = orderDetails;
         this.createTime = createTime;
         this.status = status;
+        this.shippingFee = shippingFee;
     }
 
     public List<OrderItemDTO> getOrderItem() {
@@ -35,5 +37,17 @@ public class OrderPackageDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<OrderItemDTO> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public double getShippingFee() {
+        return shippingFee;
+    }
+
+    public void setShippingFee(double shippingFee) {
+        this.shippingFee = shippingFee;
     }
 }
