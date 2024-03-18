@@ -18,6 +18,7 @@ import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.cart.CartDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.cart.CartAPIService;
+import com.mobilers.gift_hommie_mobile.util.Util;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         CartDTO cartItem = list.get(position);
         holder.bind(cartItem, listener);
         if (GlobalService.getInstance().getCheckoutDTO().getCarts().contains(cartItem)) {
-            holder.itemView.setBackgroundColor(Color.rgb(153, 255, 255));
+                holder.itemView.setBackgroundColor(Color.rgb(204, 255, 204));
             holder.ivRetangle.setVisibility(View.GONE);
         } else {
             holder.itemView.setBackgroundColor(Color.TRANSPARENT);
@@ -95,7 +96,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
             this.item = item;
             tvName.setText(item.getProduct().getName());
             tvQuantity.setText("" + item.getQuantity());
-            tvPrice.setText("" + item.getTotal());
+            //tvPrice.setText("" + item.getTotal());
+            tvPrice.setText(Util.formatPriceVND(item.getTotal()));
 
             ivMinus.setOnClickListener(v -> {
                 if (item.getQuantity() == 1) {
@@ -161,13 +163,13 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
         }
 
         private void confirmToDelete() {
-            if (adapter.list == null || adapter.list.size() <= 1) {
-                Toast.makeText(adapter.context, "Bạn không thể xóa, để checkout cần ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
-                return;
-            }
+//            if (adapter.list == null || adapter.list.size() <= 1) {
+//                Toast.makeText(adapter.context, "Bạn không thể xóa, để đặt hàng cần ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
             AlertDialog.Builder dialog = new androidx.appcompat.app.AlertDialog.Builder(adapter.context);
             dialog.setMessage("Bạn muốn xóa " + item.getProduct().getName() + " khỏi danh sách!");
-            dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            dialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     cartAPIService.delete(item.getId(), new Callback<CartDTO>() {
@@ -183,12 +185,16 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
 //                            Toast.makeText(adapter.context, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+                    if (GlobalService.getInstance().getCheckoutDTO().getCarts().contains(item)) {
+                        GlobalService.getInstance().getCheckoutDTO().getCarts().remove(item);
+                    }
                     adapter.list.remove(item);
+
                     Toast.makeText(adapter.context, "Đã xóa " + item.getProduct().getName() + " khỏi danh sách!", Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();
                 }
             });
-            dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                 }
