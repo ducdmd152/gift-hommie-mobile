@@ -7,8 +7,9 @@ import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface IOrderAPIService {
     @GET("{endpoint}")
-    Call<OrderPakageListResponseDTO> getAll(@Path(value = "endpoint", encoded = true) String endpoint);
+    Call<OrderPakageListResponseDTO> getAll(@Path(value = "endpoint", encoded = true) String endpoint,@Query("size") int size);
 }

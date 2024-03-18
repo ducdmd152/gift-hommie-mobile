@@ -18,8 +18,8 @@ public class OrderAPIService {
         this.apiService = APIClient.getClient().create(IOrderAPIService.class);
 
     }
-    public void getAll(Callback<OrderPakageListResponseDTO> callback) {
-        Call<OrderPakageListResponseDTO> call = apiService.getAll(endpoint);
+    public void getAll(Callback<OrderPakageListResponseDTO> callback,int size ) {
+        Call<OrderPakageListResponseDTO> call = apiService.getAll(endpoint,size);
         call.enqueue(callback);
         }
 }

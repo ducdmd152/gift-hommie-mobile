@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.model.order.OrderItemDTO;
 import com.mobilers.gift_hommie_mobile.model.order.OrderPackageDTO;
+import com.mobilers.gift_hommie_mobile.util.Util;
 
 import java.util.List;
 
@@ -45,12 +46,14 @@ public class OrderPakageAdapter extends RecyclerView.Adapter<OrderPakageAdapter.
        }
        holder.date.setText(dto.getCreateTime());
         int tatal = (int) dto.getShippingFee();
-        holder.ship.setText("Vận chuyển: "+(int)dto.getShippingFee()+"đồng");
+
+        holder.ship.setText("Vận chuyển: "+Util.formatPriceVND((int)dto.getShippingFee()));
         for (OrderItemDTO item : dto.getOrderItem())
         {
             tatal = (int) (tatal+ item.getProduct().getPrice());
         }
-        holder.tatol.setText("Tổng cộng: "+String.valueOf(tatal) +" đồng");
+
+        holder.tatol.setText("Tổng cộng: "+ Util.formatPriceVND((tatal)));
 
         if (dto.getStatus().equals("PENDING")||dto.getStatus().equals("CONFIRMED")){
             holder.status.setText("Đã đặt hàng");

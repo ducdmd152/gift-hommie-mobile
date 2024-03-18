@@ -56,7 +56,7 @@ public class OrderActivity extends AppCompatActivity {
         Button btncancelled = findViewById(R.id.cancelled);
         Button btnAll = findViewById(R.id.order_all);
         Button btnfailure = findViewById(R.id.failure);
-        Button btnhome = findViewById(R.id.order_home);
+//        Button btnhome = findViewById(R.id.order_home);
 
 
         btnAll.setAlpha(1f);
@@ -159,13 +159,13 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
 
-        btnhome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnhome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void initViews() {
@@ -202,7 +202,8 @@ public class OrderActivity extends AppCompatActivity {
             public void onFailure(Call<OrderPakageListResponseDTO> call, Throwable t) {
                 Toast.makeText(OrderActivity.this, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        },100);
+
     }
 
     private void filterDataDaDatHang() {
