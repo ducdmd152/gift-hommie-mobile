@@ -47,8 +47,17 @@ public class CartActivity extends AppCompatActivity {
         binding();
         initData();
         TextView btnCheckout = findViewById(R.id.btnCheckout);
+        TextView tvTB = findViewById(R.id.tvTB);
         btnCheckout.setOnClickListener(v -> {
             Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+            if (!checkoutDTO.getCarts().isEmpty()) startActivity(intent);
+            else
+                Toast.makeText(context, "Vui lòng chọn ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
+            return;
+        });
+        ImageView ivMenu = findViewById(R.id.ivMenu);
+        ivMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(context, User_Page_Activity.class);
             startActivity(intent);
             return;
         });
@@ -70,6 +79,7 @@ public class CartActivity extends AppCompatActivity {
                     List<CartDTO> result = response.body().getContent();
                     list.clear();
                     if (result != null) list.addAll(result);
+                    if (list.isEmpty()) tvTB.setText("Không có sản phẩm nào trong giỏ hàng!");
                     cartListAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(context, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
