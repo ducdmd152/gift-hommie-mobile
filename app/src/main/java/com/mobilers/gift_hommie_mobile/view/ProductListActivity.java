@@ -21,6 +21,7 @@ import com.mobilers.gift_hommie_mobile.adapter.ProductListAdapter;
 import com.mobilers.gift_hommie_mobile.model.product.ProductListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
 import com.mobilers.gift_hommie_mobile.service.product.ProductAPIService;
+import com.mobilers.gift_hommie_mobile.util.Util;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,58 +58,46 @@ public class ProductListActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.etSearch);
         spinnerCategory = findViewById(R.id.spinnerCategory);
 
-        // Thực hiện setup Spinner với danh sách danh mục sản phẩm
         setupCategorySpinner();
 
-        // Xử lý sự kiện nhấn phím Enter trên EditText để thực hiện tìm kiếm
-        etSearch.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    String keyword = etSearch.getText().toString().trim();
-                    performSearch(keyword);
-                    return true;
-                }
-                return false;
+        etSearch.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                String keyword = etSearch.getText().toString().trim();
+                performSearch(keyword);
+                return true;
             }
+            return false;
         });
     }
 
     private void setupCategorySpinner() {
-        // Thiết lập adapter cho Spinner với danh sách danh mục sản phẩm
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
-        // Thiết lập sự kiện chọn danh mục từ Spinner
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedCategory = (String) parentView.getItemAtPosition(position);
                 if (position == 0) {
-                    // Nếu người dùng chọn "Tất cả", hiển thị toàn bộ sản phẩm
                     displayAllProducts();
                 } else {
-                    // Nếu không, lấy categoryId tương ứng với danh mục được chọn và lấy sản phẩm theo categoryId
-                    int categoryId = position; // Ví dụ: position 0 sẽ có categoryId = 1
+                    int categoryId = position;
                     getProductsByCategory(categoryId);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // Không làm gì khi không có danh mục nào được chọn
             }
         });
     }
 
     private void displayAllProducts() {
         ProductAPIService productAPIService = new ProductAPIService();
-        productAPIService.getAllProducts(new Callback<ProductListResponseDTO>() {
+        productAPIService.getAllProducts(25, new Callback<ProductListResponseDTO>() {
             @Override
             public void onResponse(Call<ProductListResponseDTO> call, Response<ProductListResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    // Cập nhật RecyclerView với danh sách sản phẩm mới
                     productListAdapter = new ProductListAdapter(ProductListActivity.this, response.body().getContent());
                     rvProductList.setAdapter(productListAdapter);
                 } else {
@@ -129,7 +118,6 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProductListResponseDTO> call, Response<ProductListResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    // Cập nhật RecyclerView với danh sách sản phẩm mới
                     productListAdapter = new ProductListAdapter(ProductListActivity.this, response.body().getContent());
                     rvProductList.setAdapter(productListAdapter);
                 } else {
