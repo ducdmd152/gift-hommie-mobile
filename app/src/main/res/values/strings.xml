@@ -15,5 +15,8 @@
     <string name="__799_string">$799</string>
     <string name="_09_41_string">09:41</string>
 
+    <string name="notification">Hệ thống</string>
+    <string name="notification_description">This is notification 1</string>
+
 
 </resources>
