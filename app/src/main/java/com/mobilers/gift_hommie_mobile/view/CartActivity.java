@@ -36,6 +36,8 @@ public class CartActivity extends AppCompatActivity {
     private CartListAdapter cartListAdapter;
     private RecyclerView rvItemCart;
     private List<CartDTO> list;
+    CartAPIService cartAPIService;
+    TextView tvTB;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class CartActivity extends AppCompatActivity {
         rvItemCart.setAdapter(cartListAdapter);
         rvItemCart.setLayoutManager(new LinearLayoutManager(this));
 
-        CartAPIService cartAPIService = new CartAPIService();
+        cartAPIService = new CartAPIService();
         cartAPIService.getAll(new Callback<CartListResponseDTO>() {
             @Override
             public void onResponse(Call<CartListResponseDTO> call, Response<CartListResponseDTO> response) {
@@ -91,7 +93,6 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(CartActivity.this, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
 
         cartListAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -118,6 +119,30 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         //events();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        cartAPIService.getAll(new Callback<CartListResponseDTO>() {
+            @Override
+            public void onResponse(Call<CartListResponseDTO> call, Response<CartListResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    List<CartDTO> result = response.body().getContent();
+                    list.clear();
+                    if (result != null) list.addAll(result);
+                    if (list.isEmpty()) tvTB.setText("Không có sản phẩm nào trong giỏ hàng!");
+                    cartListAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(context, "Không thể tải danh sách sản phẩm", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CartListResponseDTO> call, Throwable t) {
+                Toast.makeText(CartActivity.this, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initService() {
