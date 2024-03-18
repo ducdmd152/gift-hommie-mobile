@@ -94,7 +94,7 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void displayAllProducts() {
         ProductAPIService productAPIService = new ProductAPIService();
-        productAPIService.getAllProducts(20, new Callback<ProductListResponseDTO>() {
+        productAPIService.getAllProducts(25, new Callback<ProductListResponseDTO>() {
             @Override
             public void onResponse(Call<ProductListResponseDTO> call, Response<ProductListResponseDTO> response) {
                 if (response.isSuccessful()) {

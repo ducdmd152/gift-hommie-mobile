@@ -30,7 +30,7 @@ public interface IProductAPIService {
     @GET("{endpoint}")
     Call<ProductListResponseDTO> getProductsByCategory(@Path(value = "endpoint", encoded = true) String endpoint, @Query("category") int categoryId);
     @GET("{endpoint}")
-    Call<ProductListResponseDTO> getAllProducts(@Path(value = "endpoint", encoded = true) String endpoint, @Query("pageSize") int pageSize);
+    Call<ProductListResponseDTO> getAllProducts(@Path(value = "endpoint", encoded = true) String endpoint, @Query("size") int size);
 //    @POST("{endpoint}")
 //    Call<Product> create(@Path(value = "endpoint", encoded = true) String endpoint, @Body Product item);
 //
