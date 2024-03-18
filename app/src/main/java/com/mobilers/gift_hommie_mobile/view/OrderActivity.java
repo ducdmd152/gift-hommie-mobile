@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -44,6 +45,7 @@ public class OrderActivity extends AppCompatActivity {
 
     private boolean apiCalled = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,12 @@ public class OrderActivity extends AppCompatActivity {
         Button btnAll = findViewById(R.id.order_all);
         Button btnfailure = findViewById(R.id.failure);
 //        Button btnhome = findViewById(R.id.order_home);
+        ImageView ivMenu = findViewById(R.id.ivMenu);
+        ivMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(OrderActivity.this, User_Page_Activity.class);
+            startActivity(intent);
+            return;
+        });
 
 
         btnAll.setAlpha(1f);
