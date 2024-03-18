@@ -175,10 +175,11 @@
                                 android:layout_centerHorizontal="true"
                                 android:background="@drawable/_bg__button_ek1_shape"
                                 android:gravity="center"
-                                android:text="@string/add_to_cart_string"
+                                android:text="Thêm vào giỏ hàng"
                                 android:textColor="@color/_bg__details_ek1_color"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:padding="10dp"/>
 
                             <TextView
                                 android:id="@+id/btnMoveToCart"
@@ -189,10 +190,12 @@
                                 android:layout_marginTop="16dp"
                                 android:background="@drawable/_bg__button_ek1_shape"
                                 android:gravity="center"
-                                android:text="MoveToCart"
+                                android:text="Đi đến giỏ hàng"
                                 android:textColor="@color/_bg__details_ek1_color"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                />
 
                         </RelativeLayout>
 
