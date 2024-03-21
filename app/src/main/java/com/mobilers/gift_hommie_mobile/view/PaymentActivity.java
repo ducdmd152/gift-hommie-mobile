@@ -93,8 +93,6 @@ public class PaymentActivity extends AppCompatActivity {
                     Toast.makeText(context, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
                 }
             });
-            Intent intent = new Intent(PaymentActivity.this, CompetePaymentActivity.class);
-            startActivity(intent);
         });
 
         btnPaypal.setup(
