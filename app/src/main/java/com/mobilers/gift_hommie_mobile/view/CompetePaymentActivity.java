@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.mobilers.gift_hommie_mobile.App;
 import com.mobilers.gift_hommie_mobile.R;
@@ -25,7 +26,7 @@ public class CompetePaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compete_payment);
 
-        senNotification();
+        sendPaymentSuccessNotify();
 
         LinearLayout btnBackToHome = findViewById(R.id.btnBackToHome);
         btnBackToHome.setOnClickListener(v -> {
@@ -34,19 +35,18 @@ public class CompetePaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void senNotification() {
-        Notification notification = new NotificationCompat.Builder(this, App.CHANNEL_ID_1)
-                .setContentTitle(TITLE_PUSH)
-                .setContentText(CONTENT_PUSH)
+    private void sendPaymentSuccessNotify() {
+        Notification notification = new NotificationCompat.Builder(this, App.CHANNEL_ID)
+                .setContentTitle("Title push notification")
+                .setContentText("Message push notification")
+                .setSmallIcon(R.drawable.favicon)
                 .build();
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (notificationManager != null) {
-            notificationManager.notify( getNotificationID(),notification);
-        }
-
-
+        notificationManager.notify(getNotificationId(), notification);
     }
-    private int getNotificationID(){
+
+    private int getNotificationId() {
         return (int) new Date().getTime();
     }
 }
