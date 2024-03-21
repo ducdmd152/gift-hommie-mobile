@@ -49,4 +49,10 @@ public class CompetePaymentActivity extends AppCompatActivity {
     private int getNotificationId() {
         return (int) new Date().getTime();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

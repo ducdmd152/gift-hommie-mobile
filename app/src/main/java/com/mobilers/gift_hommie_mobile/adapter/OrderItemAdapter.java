@@ -40,7 +40,7 @@ import java.util.List;
 
             Picasso.get().load(item.getProduct().getAvatar()).into(holder.avatar);
             holder.name.setText(item.getProduct().getName());
-            holder.price.setText("Giá: "+ Util.formatPriceVND((int)item.getPrice()));
+            holder.price.setText("Giá: "+ Util.formatPriceVND((int)item.getPrice()*item.getQuantity()));
             holder.quanlity.setText("Số lượng: "+item.getQuantity());
         }
 

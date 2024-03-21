@@ -50,7 +50,7 @@ public class OrderPakageAdapter extends RecyclerView.Adapter<OrderPakageAdapter.
         holder.ship.setText("Vận chuyển: "+Util.formatPriceVND((int)dto.getShippingFee()));
         for (OrderItemDTO item : dto.getOrderItem())
         {
-            tatal = (int) (tatal+ item.getProduct().getPrice());
+            tatal = (int) (tatal+ item.getProduct().getPrice()*item.getQuantity());
         }
 
         holder.tatol.setText("Tổng cộng: "+ Util.formatPriceVND((tatal)));
