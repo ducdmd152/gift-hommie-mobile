@@ -78,6 +78,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private void binding() {
         etPhone = findViewById(R.id.etPhone);
         etName = findViewById(R.id.etName);
+        etName.setText(globalService.getAccount().getFirstName() + " " + globalService.getAccount().getLastName());
+        etPhone.setText(globalService.getAccount().getPhone());
         etAddress = findViewById(R.id.etAddress);
         etMessage = findViewById(R.id.etMessage);
         etVoucherCode = findViewById(R.id.etVoucherCode);
