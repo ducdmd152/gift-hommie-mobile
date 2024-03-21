@@ -37,8 +37,8 @@ public class CompetePaymentActivity extends AppCompatActivity {
 
     private void sendPaymentSuccessNotify() {
         Notification notification = new NotificationCompat.Builder(this, App.CHANNEL_ID)
-                .setContentTitle("Title push notification")
-                .setContentText("Message push notification")
+                .setContentTitle(getString(R.string.channel_name))
+                .setContentText(getString(R.string.channel_description))
                 .setSmallIcon(R.drawable.favicon)
                 .build();
 
