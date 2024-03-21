@@ -24,6 +24,7 @@ import com.cardinalcommerce.a.getProgressView;
 import com.mobilers.gift_hommie_mobile.R;
 import com.mobilers.gift_hommie_mobile.adapter.OrderItemAdapter;
 import com.mobilers.gift_hommie_mobile.adapter.OrderPakageAdapter;
+import com.mobilers.gift_hommie_mobile.model.checkout.CheckoutDTO;
 import com.mobilers.gift_hommie_mobile.model.order.OrderPackageDTO;
 import com.mobilers.gift_hommie_mobile.model.order.OrderPakageListResponseDTO;
 import com.mobilers.gift_hommie_mobile.service.GlobalService;
@@ -42,6 +43,8 @@ public class OrderActivity extends AppCompatActivity {
     private List<OrderPackageDTO> data = new ArrayList<>();
     private OrderPakageAdapter orderPakageAdapter;
     private RecyclerView recyclerView;
+    private GlobalService globalService;
+    private CheckoutDTO checkoutDTO;
 
     private boolean apiCalled = false;
 
@@ -187,6 +190,10 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initService() {
+        globalService = GlobalService.getInstance();
+        checkoutDTO = new CheckoutDTO();
+        checkoutDTO.setCarts(new ArrayList<>());
+        globalService.setCheckoutDTO(checkoutDTO);
     }
 
     private void callOrderAPI() {
@@ -210,7 +217,7 @@ public class OrderActivity extends AppCompatActivity {
             public void onFailure(Call<OrderPakageListResponseDTO> call, Throwable t) {
                 Toast.makeText(OrderActivity.this, "Đã xảy ra lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        },100);
+        }, 100);
 
     }
 
@@ -235,6 +242,7 @@ public class OrderActivity extends AppCompatActivity {
         orderPakageAdapter.setData(filter);
         orderPakageAdapter.notifyDataSetChanged();
     }
+
     private void filtercancelled() {
         List<OrderPackageDTO> filter = new ArrayList<>();
         for (OrderPackageDTO item : data) {
@@ -256,11 +264,12 @@ public class OrderActivity extends AppCompatActivity {
         orderPakageAdapter.setData(filter);
         orderPakageAdapter.notifyDataSetChanged();
     }
+
     private void filterAll() {
         List<OrderPackageDTO> filter = new ArrayList<>();
         for (OrderPackageDTO item : data) {
 
-                filter.add(item);
+            filter.add(item);
 
         }
         orderPakageAdapter.setData(filter);

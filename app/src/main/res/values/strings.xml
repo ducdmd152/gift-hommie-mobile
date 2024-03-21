@@ -15,5 +15,10 @@
     <string name="__799_string">$799</string>
     <string name="_09_41_string">09:41</string>
 
+    <string name="notification">Hệ thống</string>
+    <string name="notification_description">This is notification 1</string>
+
+    <string name="channel_name">Bạn đã đặt hàng thành công</string>
+    <string name="channel_description">Đơn hàng của bạn sẽ được giao trong thời gian sớm nhất.</string>
 
 </resources>
